@@ -39,10 +39,9 @@ class MottoController extends Controller
         return $motto;
     }
 
-    public function send(Motto $motto)
+    public function push(Motto $motto)
     {
-        //Mail::to('leishengtao@1fangxin.cn')->send(new MottoShipped($motto));
-        //Mail::to('sunshiping@1fangxin.cn')->send(new MottoShipped($motto));
+        Mail::to('leishengtao@1fangxin.cn')->send(new MottoShipped($motto));
 
         $motto->update([
             'status' => true,

@@ -194,14 +194,13 @@
 
       // 每日一图
       $(".user-push").click(function () {
-        axios.put('/api/motto/' + $(this).data('json').id).then(function () {
+        axios.put('/api/motto/' + $(this).data('json').id + '/push').then(function () {
           toastr.success('👍👍👍', '干的漂亮');
         }).then(function () {
           window.location.reload();
         });
       });
-
-
+        
     </script>
 @endsection
 
