@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        Mail::to('1436650793@qq.com')->send(new MottoShipped(Motto::first()));
+        //Mail::to('1436650793@qq.com')->send(new MottoShipped(Motto::first()));
 
         return view('welcome');
     }
