@@ -131,10 +131,12 @@
                                                     data-json="{{$user}}">
                                                 编辑
                                             </button>
-                                            <button type="button" class="btn btn-danger btn-sm user-delete"
-                                                    data-json="{{$user}}">
-                                                删除
-                                            </button>
+                                            @if($user->email == 'admin@fangxin.com')
+                                                <button type="button" class="btn btn-danger btn-sm user-delete"
+                                                        data-json="{{$user}}">
+                                                    删除
+                                                </button>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
