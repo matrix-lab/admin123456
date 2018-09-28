@@ -196,7 +196,8 @@
           }
         });
       });
-      function valiForm() {
+      //添加操作
+      $("#save").click(function () {
         if (vali.form()) {
           if ($(this).data('json') == undefined) {
             var promise = axios.post('/api/customer', {
@@ -230,10 +231,6 @@
             window.location.reload();
           })
         }
-      }
-      //添加操作
-      $("#save").click(function () {
-        valiForm();
       });
 
       // 删除操作 //
