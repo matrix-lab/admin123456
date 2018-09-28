@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\MottoShipped;
 use App\Models\Customer;
 use App\Models\Motto;
 use App\Models\Task;
 use App\Models\Team;
 use App\Models\Version;
 use App\User;
-use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        //Mail::to('1436650793@qq.com')->send(new MottoShipped(Motto::first()));
-
         return view('welcome');
     }
 
