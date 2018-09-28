@@ -28,7 +28,7 @@ class MottoShipped extends Mailable
      */
     public function build()
     {
-        $this->subject = '【开发部】'.$this->motto->user->name.'的每日一图 👍';
+        $this->subject = '👍，您有一封来自开发部'.$this->motto->user->name.'推荐的每日一图';
 
         return $this->view('email.motto', ['motto' => $this->motto]);
     }
