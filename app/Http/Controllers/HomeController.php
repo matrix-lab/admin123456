@@ -27,7 +27,7 @@ class HomeController extends Controller
 
     public function user()
     {
-        $users = User::all();
+        $users = User::where('id', '>', 1)->orderBy('id', 'asc')->get();
         $teams = [];
 
         Team::all()->map(function ($item) use (&$teams) {
