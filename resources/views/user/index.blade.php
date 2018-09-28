@@ -175,6 +175,7 @@
     <script>
       $('#zero_config').DataTable({
         "order": [[7, "asc"]],
+        "pageLength": 50,
         "columnDefs": [
           {"className": "text-center", "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8]}
         ],
