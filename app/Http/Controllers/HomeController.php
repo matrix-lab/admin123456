@@ -18,7 +18,7 @@ class HomeController extends Controller
 
     public function team()
     {
-        $teams = Team::orderBy('id', 'DESC')->all();
+        $teams = Team::orderBy('id', 'ASC')->get();
 
         return view('team.index', ['teams' => $teams]);
     }
