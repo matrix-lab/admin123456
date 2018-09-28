@@ -63,6 +63,13 @@
                                                 <textarea name="reason" id="reason" class="form-control"></textarea>
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <label for="note"
+                                                   class="col-sm-3 text-right control-label col-form-label">执行脚本</label>
+                                            <div class="col-sm-8">
+                                                <textarea name="note" id="note" class="form-control"></textarea>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
