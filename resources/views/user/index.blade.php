@@ -182,9 +182,22 @@
       $.each($("#zero_config").data('team'), function (index, item) {
         $("#uteam").append(new Option(item, index));
       });
+      $.team = {
+        valid:function () {
+          if($("#uname").val() === ''){
+            toastr.warning('👎👎👎', '姓名为必填项');
+            return false;
+          }else if($("#uemail").val() === ''){
+            toastr.warning('👎👎👎', '邮箱为必填项');
+            return false;
+          }
+        }
+      }
+
 
       //添加操作
       $("#save").click(function () {
+        if($.team.valid() === false) return;
         if ($(this).data('json') == undefined) {
           var promise = axios.post('/api/user', {
             name: $("#uname").val(),
