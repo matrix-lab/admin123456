@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Team;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {

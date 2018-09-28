@@ -162,7 +162,7 @@
         }).then(function () {
           $("#team")[0].reset();
         }).then(function () {
-          window.location.reload();
+          //window.location.reload();
         })
       });
 
