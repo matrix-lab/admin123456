@@ -34,7 +34,7 @@
                                                    class="col-sm-3 text-right control-label col-form-label">城市</label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" id="city" name="city"
-                                                       placeholder="城市">
+                                                       placeholder="城市"/>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -167,58 +167,70 @@
         ],
       });
 
-      $.team = {
-        valid:function () {
-          if($("#name").val() === ''){
-            toastr.warning('👎👎👎', '公司名称为必填项');
-            return false;
-          }else if($("#city").val() === ''){
-            toastr.warning('👎👎👎', '城市为必填项');
-            return false;
-          }else if($("#master").val() === ''){
-            toastr.warning('👎👎👎', '负责人为必填项');
-            return false;
-          }else if($("#contact").val() === ''){
-            toastr.warning('👎👎👎', '联系方式为必填项');
-            return false;
+      jQuery.validator.addMethod("isMobile", function(value, element) {
+        var length = value.length;
+        var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+        return this.optional(element) || (length == 11 && mobile.test(value));	});
+
+      var vali;
+      $(function() {
+        vali = $("#cutomer").validate({
+          rules : {
+            name : "required",
+            city : "required",
+            master : "required",
+            contact : {
+              required:true,
+              isMobile : true
+            },
+          },
+          messages : {
+            name : "请输入您的名字",
+            city : "请输入所在城市",
+            master : "请输入负责人姓名",
+            contact : "请输入联系方式",
           }
+        });
+      });
+      function valiForm() {
+        //console.log(vali)
+        if (vali.form()) {
+          if ($(this).data('json') == undefined) {
+            var promise = axios.post('/api/customer', {
+              name: $("#name").val(),
+              city: $("#city").val(),
+              master: $("#master").val(),
+              contact: $("#contact").val(),
+              position: $("#position").val(),
+              note: $("#note").val(),
+              _token: "{{ csrf_token() }}"
+            })
+          } else {
+            var promise = axios.put('/api/customer/' + $(this).data('json').id, {
+              name: $("#name").val(),
+              city: $("#city").val(),
+              master: $("#master").val(),
+              contact: $("#contact").val(),
+              position: $("#position").val(),
+              note: $("#note").val(),
+              _token: "{{ csrf_token() }}"
+            })
+          }
+          promise.then(function () {
+            toastr.success('👍👍👍', '干的漂亮');
+            $("#store").modal('hide');
+          }).catch(function () {
+            toastr.error('👎👎👎', '姿势不对');
+          }).then(function () {
+            $("#cutomer")[0].reset();
+          }).then(function () {
+            window.location.reload();
+          })
         }
       }
-
       //添加操作
       $("#save").click(function () {
-        if($.team.valid() === false) return;
-        if ($(this).data('json') == undefined) {
-          var promise = axios.post('/api/customer', {
-            name: $("#name").val(),
-            city: $("#city").val(),
-            master: $("#master").val(),
-            contact: $("#contact").val(),
-            position: $("#position").val(),
-            note: $("#note").val(),
-            _token: "{{ csrf_token() }}"
-          })
-        } else {
-          var promise = axios.put('/api/customer/' + $(this).data('json').id, {
-            name: $("#name").val(),
-            city: $("#city").val(),
-            master: $("#master").val(),
-            contact: $("#contact").val(),
-            position: $("#position").val(),
-            note: $("#note").val(),
-            _token: "{{ csrf_token() }}"
-          })
-        }
-        promise.then(function () {
-          toastr.success('👍👍👍', '干的漂亮');
-          $("#store").modal('hide');
-        }).catch(function () {
-          toastr.error('👎👎👎', '姿势不对');
-        }).then(function () {
-          $("#cutomer")[0].reset();
-        }).then(function () {
-          window.location.reload();
-        })
+        valiForm();
       });
 
       // 删除操作 //

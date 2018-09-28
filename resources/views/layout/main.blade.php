@@ -25,6 +25,16 @@
         table td{
             font-size: 13px;
         }
+        .form-group div{
+            position: relative;
+        }
+        .form-group label.error{
+            position: absolute;
+            right: 12px;
+            top: 8px;
+            font-weight: 200;
+            color: red;
+        }
     </style>
 </head>
 <body>
