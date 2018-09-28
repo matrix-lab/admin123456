@@ -23,10 +23,10 @@
                                     <form class="form-horizontal" name="cutomer" id="cutomer">
                                         <div class="form-group row">
                                             <label for="name"
-                                                   class="col-sm-3 text-right control-label col-form-label">姓名</label>
+                                                   class="col-sm-3 text-right control-label col-form-label">名称</label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" id="name" name="name"
-                                                       placeholder="公司名称">
+                                                       placeholder="公司名称" required/>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -42,7 +42,7 @@
                                                    class="col-sm-3 text-right control-label col-form-label">负责人</label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" id="master" name="master"
-                                                       placeholder="负责人">
+                                                       placeholder="负责人" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -50,7 +50,7 @@
                                                    class="col-sm-3 text-right control-label col-form-label">联系方式</label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" id="contact" name="contact"
-                                                       placeholder="联系方式">
+                                                       placeholder="联系方式" required/>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -167,8 +167,27 @@
         ],
       });
 
+      $.team = {
+        valid:function () {
+          if($("#name").val() === ''){
+            toastr.warning('👎👎👎', '公司名称为必填项');
+            return false;
+          }else if($("#city").val() === ''){
+            toastr.warning('👎👎👎', '城市为必填项');
+            return false;
+          }else if($("#master").val() === ''){
+            toastr.warning('👎👎👎', '负责人为必填项');
+            return false;
+          }else if($("#contact").val() === ''){
+            toastr.warning('👎👎👎', '联系方式为必填项');
+            return false;
+          }
+        }
+      }
+
       //添加操作
       $("#save").click(function () {
+        if($.team.valid() === false) return;
         if ($(this).data('json') == undefined) {
           var promise = axios.post('/api/customer', {
             name: $("#name").val(),

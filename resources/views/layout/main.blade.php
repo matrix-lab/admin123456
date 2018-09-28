@@ -52,6 +52,7 @@
 <!--DataTable-->
 <script src="/assets/extra-libs/DataTables/datatables.min.js"></script>
 <script src="/assets/libs/toastr/build/toastr.min.js"></script>
+<script src="/assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="/assets/libs/axios/axios.min.js"></script>
 <script src="/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!--Custom JavaScript -->
