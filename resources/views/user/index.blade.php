@@ -174,6 +174,7 @@
 @section('scripts')
     <script>
       $('#zero_config').DataTable({
+        "order": [[7, "asc"]],
         "columnDefs": [
           {"className": "text-center", "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8]}
         ],
@@ -183,11 +184,11 @@
         $("#uteam").append(new Option(item, index));
       });
       $.team = {
-        valid:function () {
-          if($("#uname").val() === ''){
+        valid: function () {
+          if ($("#uname").val() === '') {
             toastr.warning('👎👎👎', '姓名为必填项');
             return false;
-          }else if($("#uemail").val() === ''){
+          } else if ($("#uemail").val() === '') {
             toastr.warning('👎👎👎', '邮箱为必填项');
             return false;
           }
@@ -197,7 +198,7 @@
 
       //添加操作
       $("#save").click(function () {
-        if($.team.valid() === false) return;
+        if ($.team.valid() === false) return;
         if ($(this).data('json') == undefined) {
           var promise = axios.post('/api/user', {
             name: $("#uname").val(),

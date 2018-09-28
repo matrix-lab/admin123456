@@ -54,11 +54,11 @@
                             <table id="zero_config" class="table table-responsive-md table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>发布人</th>
-                                    <th>爱心</th>
+                                    <th style="width: 100px;">发布人</th>
+                                    <th style="width: 60px;">爱心</th>
                                     <th>内容</th>
-                                    <th>创建时间</th>
-                                    <td>状态</td>
+                                    <th style="width: 100px;">创建时间</th>
+                                    <td style="width: 60px;">状态</td>
                                     <th style="width: 120px;">操作</th>
                                 </tr>
                                 </thead>
@@ -69,7 +69,12 @@
                                         <td>{{$motto->star}}</td>
                                         <td>{{$motto->content}}</td>
                                         <td>{{$motto->created_at}}</td>
-                                        <td>{{$motto->status ? '已使用':'未使用'}}</td>
+                                        <td>
+                                            @if($motto->status)
+                                                <span style="color: red;">已使用</span>
+                                            @else
+                                                <span style="color: green;">未使用</span>
+                                        @endif
                                         <td>
                                             <button type="button" class="btn btn-success btn-sm user-update"
                                                     data-json="{{$motto}}">
@@ -129,6 +134,7 @@
 @section('scripts')
     <script>
       $('#zero_config').DataTable({
+        "order": [[3, "desc"]],
         "columnDefs": [
           {"className": "text-center", "targets": [0, 1, 2, 3, 4, 5]}
         ],
@@ -200,7 +206,7 @@
           window.location.reload();
         });
       });
-        
+
     </script>
 @endsection
 

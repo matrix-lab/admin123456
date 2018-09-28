@@ -162,6 +162,7 @@
 @section('scripts')
     <script>
       $('#zero_config').DataTable({
+        "order": [[6, "asc"]],
         "columnDefs": [
           {"className": "text-center", "targets": [0, 1, 2, 3, 4, 5, 6, 7]}
         ],
@@ -193,7 +194,6 @@
         });
       });
       function valiForm() {
-        //console.log(vali)
         if (vali.form()) {
           if ($(this).data('json') == undefined) {
             var promise = axios.post('/api/customer', {

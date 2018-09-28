@@ -90,12 +90,12 @@
                                     <th style="width: 45px;">分支</th>
                                     <th>客户</th>
                                     <th style="width: 90px;">预约时间</th>
-                                    <th style="width: 80px;">申请人</th>
-                                    <th style="width: 80px;">审批人</th>
-                                    <th style="width: 80px;">发布人</th>
+                                    <th style="width: 60px;">申请人</th>
+                                    <th style="width: 60px;">审批人</th>
+                                    <th style="width: 60px;">发布人</th>
                                     <th style="width: 60px;">进度</th>
                                     <th style="width: 60px;">状态</th>
-                                    <th style="width: 90px;">创建时间</th>
+                                    <th style="width: 100px;">创建时间</th>
                                     <th style="width: 80px;">操作</th>
                                 </tr>
                                 </thead>
@@ -188,6 +188,7 @@
       });
 
       $('#zero_config').DataTable({
+        "order": [[9, "desc"]],
         "columnDefs": [
           {"className": "text-center", "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
         ],

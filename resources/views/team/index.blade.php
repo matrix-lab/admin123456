@@ -132,26 +132,27 @@
 @endsection
 @section('scripts')
     <script>
-        $.team = {
-          valid:function () {
-            if($("#tname").val() === ''){
-              toastr.warning('👎👎👎', '名称为必填项');
-              return false;
-            }else if($("#talias").val() === ''){
-              toastr.warning('👎👎👎', '别名为必填项');
-              return false;
-            }
+      $.team = {
+        valid: function () {
+          if ($("#tname").val() === '') {
+            toastr.warning('👎👎👎', '名称为必填项');
+            return false;
+          } else if ($("#talias").val() === '') {
+            toastr.warning('👎👎👎', '别名为必填项');
+            return false;
           }
         }
+      }
 
       $('#zero_config').DataTable({
+        "order": [[3, "asc"]],
         "columnDefs": [
           {"className": "text-center", "targets": [0, 1, 2, 3, 4, 5]}
         ],
       });
       //添加操作
       $("#save").click(function () {
-        if($.team.valid() === false) return;
+        if ($.team.valid() === false) return;
         if ($(this).data('json') == undefined) {
           var promise = axios.post('/api/team', {
             name: $("#tname").val(),
