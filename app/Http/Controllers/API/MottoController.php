@@ -24,7 +24,6 @@ class MottoController extends Controller
     public function update(Request $request, Motto $motto)
     {
         $request->offsetSet('user_alias', Auth::user()->alias);
-        $request->offsetSet('star', ($motto->star + rand(1, 5)));
         $request->offsetSet('user_email', Auth::user()->email);
 
         $motto->update($request->all());
@@ -46,6 +45,13 @@ class MottoController extends Controller
         $motto->update([
             'status' => true,
         ]);
+
+        return $motto;
+    }
+
+    public function like(Motto $motto)
+    {
+        $motto->increment('star', 1);
 
         return $motto;
     }

@@ -262,88 +262,41 @@
                     </div>
                     <div class="comment-widgets scrollable ps-container ps-theme-default"
                          data-ps-id="70684c89-6c35-b205-013f-1e1873d11d74">
-                        <div class="d-flex flex-row comment-row m-t-0">
-                            <div class="p-2">
-                                <img src="/assets/images/users/1.jpg" alt="user" width="50" class="rounded-circle">
-                            </div>
-                            <div class="comment-text w-100">
-                                <h6 class="font-medium">2B青年欢乐多</h6>
-                                <span class="m-b-15 d-block">
-                                    努力，除了让自己感动的不行，让爱你的人心疼之外，好像也没有别的意义了.
+                        @foreach($mottos as $motto)
+                            <div class="d-flex flex-row comment-row">
+                                <div class="p-2">
+                                    <img src="{{avatar($motto->user_email)}}" alt="user" width="50"
+                                         class="rounded-circle">
+                                </div>
+                                <div class="comment-text active w-100">
+                                    <h6 class="font-medium">{{$motto->user_alias}}</h6>
+                                    <span class="m-b-15 d-block">
+                                     {{$motto->content}}
                                 </span>
-                                <div class="comment-footer">
-                                    <span class="text-muted float-right">{{Carbon\Carbon::now()}}</span>
-                                    <button type="button" class="btn btn-success btn-sm">👍</button>
+                                    <div class="comment-footer">
+                                        <span class="text-muted float-right">{{$motto->created_at}}</span>
+                                        <a style=" cursor: pointer;"
+                                           onclick="like('{{$motto->id}}',this)">👍 +<span>{{$motto->star}}</span></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="d-flex flex-row comment-row">
-                            <div class="p-2">
-                                <img src="/assets/images/users/4.jpg" alt="user" width="50" class="rounded-circle">
-                            </div>
-                            <div class="comment-text active w-100">
-                                <h6 class="font-medium">鸢尾</h6>
-                                <span class="m-b-15 d-block">
-                                    人性的丑陋之处在于：一旦习惯了接受，就会忘记感恩.
-                                </span>
-                                <div class="comment-footer">
-                                    <span class="text-muted float-right">{{Carbon\Carbon::now()->subDay(2)}}</span>
-                                    <button type="button" class="btn btn-success btn-sm">👍</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-row comment-row">
-                            <div class="p-2">
-                                <img src="/assets/images/users/5.jpg" alt="user" width="50" class="rounded-circle">
-                            </div>
-                            <div class="comment-text w-100">
-                                <h6 class="font-medium">骑着毛驴儿追宝马</h6>
-                                <span class="m-b-15 d-block">
-                                    最薄不过感情，最凉不过人心.
-                                </span>
-                                <div class="comment-footer">
-                                    <span class="text-muted float-right">{{Carbon\Carbon::now()->subDay(3)}}</span>
-                                    <button type="button" class="btn btn-success btn-sm">👍</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-row comment-row">
-                            <div class="p-2">
-                                <img src="/assets/images/users/4.jpg" alt="user" width="50" class="rounded-circle">
-                            </div>
-                            <div class="comment-text active w-100">
-                                <h6 class="font-medium">西红柿炒番茄</h6>
-                                <span class="m-b-15 d-block">
-                                    有生之年，欣喜相逢；此后今年，各自安好.
-                                </span>
-                                <div class="comment-footer">
-                                    <span class="text-muted float-right">{{Carbon\Carbon::now()->subDay(5)}}</span>
-                                    <button type="button" class="btn btn-success btn-sm">👍</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-row comment-row">
-                            <div class="p-2">
-                                <img src="/assets/images/users/5.jpg" alt="user" width="50" class="rounded-circle">
-                            </div>
-                            <div class="comment-text w-100">
-                                <h6 class="font-medium">北三环老铁</h6>
-                                <span class="m-b-15 d-block">
-                                    你在哭，你说你焚烧了你自己，但你可曾想过，谁不是烟雾缭绕？
-                                </span>
-                                <div class="comment-footer">
-                                    <span class="text-muted float-right">{{Carbon\Carbon::now()->subDay(6)}}</span>
-                                    <button type="button" class="btn btn-success btn-sm">👍</button>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+
+      function like(motto_id, e) {
+        axios.put('/api/motto/' + motto_id + '/like').then(function (result) {
+          $(e).find('span').html(result.data.star);
+          toastr.success('👍👍👍', '干的漂亮');
+        })
+
+      }
+
+    </script>
 @endsection
