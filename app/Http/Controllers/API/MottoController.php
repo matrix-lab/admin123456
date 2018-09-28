@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Mail\MottoShipped;
 use App\Models\Motto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class MottoController extends Controller
 {
@@ -33,6 +35,18 @@ class MottoController extends Controller
     public function destroy(Motto $motto)
     {
         $motto->delete();
+
+        return $motto;
+    }
+
+    public function send(Motto $motto)
+    {
+        //Mail::to('leishengtao@1fangxin.cn')->send(new MottoShipped($motto));
+        //Mail::to('sunshiping@1fangxin.cn')->send(new MottoShipped($motto));
+
+        $motto->update([
+            'status' => true,
+        ]);
 
         return $motto;
     }
