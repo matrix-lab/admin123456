@@ -40,7 +40,7 @@ class PushMotto extends Command
     {
         $motto = Motto::where('status', 0)->orderBy('star', 'DESC')->first();
         if ($motto) {
-            Mail::to('1436650793@qq.com')->send(new MottoShipped($motto));
+            Mail::to('leishengtao@1fangxin.cn')->send(new MottoShipped($motto));
 
             $motto->update([
                 'status' => true,
