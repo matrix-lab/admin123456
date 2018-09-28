@@ -10,7 +10,7 @@ class TeamController extends Controller
 {
     public function index()
     {
-        return Team::all();
+        return Team::orderBy('id', 'DESC')->all();
     }
 
     public function store(Request $request)
