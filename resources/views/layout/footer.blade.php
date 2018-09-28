@@ -1,3 +1,3 @@
 <footer class="footer text-center">
-    {{ date('Y') }} @ 😁房信研发中心😁
+    {{ date('Y') }} @ 😁 Matrix Admin 😁
 </footer>
