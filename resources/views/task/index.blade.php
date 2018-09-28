@@ -192,6 +192,8 @@
                                     <th style="width: 80px;">运维工程师</th>
                                     <th style="width: 80px;">上线时间</th>
                                     <th style="width: 200px;">备注</th>
+                                    <th style="width: 80px;">进度</th>
+                                    <th style="width: 80px;">状态</th>
                                     <th style="width: 80px;">操作</th>
                                 </tr>
                                 </thead>
@@ -206,36 +208,38 @@
                                         <td>{{$task->content}}</td>
                                         <td>
                                             {{$task->ioser_alias}}<br>
-                                            {{$task->ioser_start_at}}<br>
-                                            {{$task->ioser_end_at}}
+                                            <span style="color: green;font-weight: bold;">{{$task->ioser_start_at}}</span><br>
+                                            <span style="color: red;font-weight: bold;">{{$task->ioser_end_at}}</span>
                                         </td>
                                         <td>
                                             {{$task->androider_alias}}<br>
-                                            {{$task->androider_start_at}}<br>
-                                            {{$task->androider_end_at}}
+                                            <span style="color: green;font-weight: bold;">{{$task->androider_start_at}}</span><br>
+                                            <span style="color: red;font-weight: bold;">{{$task->androider_end_at}}</span>
                                         </td>
                                         <td>
                                             {{$task->uier_alias}}<br>
-                                            {{$task->uier_start_at}}<br>
-                                            {{$task->uier_end_at}}
+                                            <span style="color: green;font-weight: bold;">{{$task->uier_start_at}}</span><br>
+                                            <span style="color: red;font-weight: bold;">{{$task->uier_end_at}}</span>
                                         </td>
                                         <td>
                                             {{$task->phper_alias}}<br>
-                                            {{$task->phper_start_at}}<br>
-                                            {{$task->phper_end_at}}
+                                            <span style="color: green;font-weight: bold;">{{$task->phper_start_at}}</span><br>
+                                            <span style="color: red;font-weight: bold;">{{$task->phper_end_at}}</span>
                                         </td>
                                         <td>
                                             {{$task->tester_alias}}<br>
-                                            {{$task->tester_start_at}}<br>
-                                            {{$task->tester_end_at}}
+                                            <span style="color: green;font-weight: bold;">{{$task->tester_start_at}}</span><br>
+                                            <span style="color: red;font-weight: bold;">{{$task->tester_end_at}}</span>
                                         </td>
                                         <td>
                                             {{$task->devopser_alias}}<br>
-                                            {{$task->devopser_start_at}}<br>
-                                            {{$task->devopser_end_at}}
+                                            <span style="color: green;font-weight: bold;">{{$task->devopser_start_at}}</span><br>
+                                            <span style="color: red;font-weight: bold;">{{$task->devopser_end_at}}</span>
                                         </td>
                                         <td>{{$task->published_at}}</td>
                                         <td>{{$task->note}}</td>
+                                        <td>{{$task->progress}}</td>
+                                        <td>{{$task->status}}</td>
                                         <td>
                                             <a class="user-delete" data-json="{{$task}}"
                                                style="display: inline-block; cursor: pointer; color: red;">
@@ -245,18 +249,6 @@
                                                style="display: inline-block; cursor: pointer; color: blue;">
                                                 编辑
                                             </a>
-                                            @if($task->progress === '待审核')
-                                                <a class="user-approve" data-json="{{$task}}"
-                                                   style="display: inline-block; cursor: pointer; color: #ff0084;">
-                                                    审核
-                                                </a>
-                                            @endif
-                                            @if($task->progress === '待发布')
-                                                <a class="user-finish" data-json="{{$task}}"
-                                                   style="display: inline-block; cursor: pointer; color: green;">
-                                                    发布
-                                                </a>
-                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -306,10 +298,11 @@
       $('#zero_config').DataTable({
         "scrollX": true,
         'fixedHeader': true,
+        "pageLength": 100,
         "columnDefs": [
           {
             "className": "text-center",
-            "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+            "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
           }
         ],
       });
@@ -359,7 +352,7 @@
         }).then(function () {
           $("#task")[0].reset();
         }).then(function () {
-          //window.location.reload();
+          window.location.reload();
         })
       });
 
