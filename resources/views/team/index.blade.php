@@ -26,7 +26,7 @@
                                                    class="col-sm-2 text-right control-label col-form-label">名称</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="tname" name="name"
-                                                       placeholder="团队负责人" required>
+                                                       placeholder="团队负责人(必填)" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -34,7 +34,7 @@
                                                    class="col-sm-2 text-right control-label col-form-label">别名</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="talias" name="alias"
-                                                       placeholder="团队别名" required>
+                                                       placeholder="团队别名(必填)" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -132,6 +132,18 @@
 @endsection
 @section('scripts')
     <script>
+        $.team = {
+          valid:function () {
+            if($("#tname").val() === ''){
+              toastr.warning('👎👎👎', '名称为必填项');
+              return false;
+            }else if($("#talias").val() === ''){
+              toastr.warning('👎👎👎', '别名为必填项');
+              return false;
+            }
+          }
+        }
+
       $('#zero_config').DataTable({
         "columnDefs": [
           {"className": "text-center", "targets": [0, 1, 2, 3, 4, 5]}
@@ -139,6 +151,7 @@
       });
       //添加操作
       $("#save").click(function () {
+        if($.team.valid() === false) return;
         if ($(this).data('json') == undefined) {
           var promise = axios.post('/api/team', {
             name: $("#tname").val(),

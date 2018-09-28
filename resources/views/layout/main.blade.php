@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/extra-libs/multicheck/multicheck.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/libs/toastr/build/toastr.min.css"/>
     <link href="/css/style.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <![endif]-->
