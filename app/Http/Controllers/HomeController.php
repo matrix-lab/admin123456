@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $users = User::all();
         $teams = [];
-        
+
         Team::all()->map(function ($item) use (&$teams) {
             $teams[$item->id] = $item->name;
         });

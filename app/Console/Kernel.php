@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\PushMotto;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,25 +14,21 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        PushMotto::class,
     ];
 
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('push:motto')->dailyAt('15:00');
     }
 
     /**
      * Register the commands for the application.
-     *
-     * @return void
      */
     protected function commands()
     {

@@ -77,5 +77,6 @@ Route::prefix('api')->namespace('API')->group(function () {
     Route::get('/motto', 'MottoController@index');
     Route::post('/motto', 'MottoController@store');
     Route::put('/motto/{motto}', 'MottoController@update');
+    Route::put('/motto/{motto}/push', 'MottoController@push');
     Route::delete('/motto/{motto}', 'MottoController@destroy');
 });

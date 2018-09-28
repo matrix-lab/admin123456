@@ -59,7 +59,7 @@
                                     <th>内容</th>
                                     <th>创建时间</th>
                                     <td>状态</td>
-                                    <th style="width: 80px;">操作</th>
+                                    <th style="width: 120px;">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -79,6 +79,17 @@
                                                     data-json="{{$motto}}">
                                                 删除
                                             </button>
+                                            @if(!$motto->status)
+                                                <button type="button" class="btn btn-primary btn-sm user-push"
+                                                        data-json="{{$motto}}">
+                                                    投稿
+                                                </button>
+                                            @else
+                                                <button type="button" class="btn btn-dark btn-sm"
+                                                        data-json="{{$motto}}">
+                                                    已投稿
+                                                </button>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -119,7 +130,7 @@
     <script>
       $('#zero_config').DataTable({
         "columnDefs": [
-          {"className": "text-center", "targets": [0, 1, 2, 3, 4]}
+          {"className": "text-center", "targets": [0, 1, 2, 3, 4, 5]}
         ],
       });
 
@@ -180,6 +191,16 @@
         $("#save").data('json', null);
       })
       // 编辑操作 //
+
+      // 每日一图
+      $(".user-push").click(function () {
+        axios.put('/api/motto/' + $(this).data('json').id + '/push').then(function () {
+          toastr.success('👍👍👍', '干的漂亮');
+        }).then(function () {
+          window.location.reload();
+        });
+      });
+        
     </script>
 @endsection
 
