@@ -70,7 +70,7 @@
                                 <thead>
                                 <tr>
                                     <th style="width: 100px;">团队负责人</th>
-                                    <th style="width: 120px;">团队别名</th>
+                                    <th style="width: 120px;">团队昵称</th>
                                     <th>团队宣言</th>
                                     <th style="width: 130px;">创建时间</th>
                                     <th style="width: 130px;">更新时间</th>
