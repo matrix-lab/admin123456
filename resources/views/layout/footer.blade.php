@@ -1,3 +1,3 @@
 <footer class="footer text-center">
-    All Rights Reserved by FangXin DevOps. @ {{ date('Y') }}
+    {{ date('Y') }} @ 😁房信研发中心😁
 </footer>

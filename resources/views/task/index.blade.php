@@ -185,23 +185,11 @@
                                     <th style="width: 60px;">模块</th>
                                     <th style="width: 200px;">任务</th>
                                     <th style="width: 80px;">苹果工程师</th>
-                                    <th style="width: 90px;">苹果开始时间</th>
-                                    <th style="width: 90px;">苹果结束时间</th>
                                     <th style="width: 80px;">安卓工程师</th>
-                                    <th style="width: 90px;">安卓开始时间</th>
-                                    <th style="width: 90px;">安卓结束时间</th>
-                                    <th style="width: 80px;">前端负责人</th>
-                                    <th style="width: 90px;">前端开始时间</th>
-                                    <th style="width: 90px;">前端结束时间</th>
-                                    <th style="width: 80px;">后端负责人</th>
-                                    <th style="width: 90px;">后端开始时间</th>
-                                    <th style="width: 90px;">后端结束时间</th>
-                                    <th style="width: 80px;">测试负责人</th>
-                                    <th style="width: 90px;">测试开始时间</th>
-                                    <th style="width: 90px;">测试结束时间</th>
-                                    <th style="width: 80px;"> 运维负责人</th>
-                                    <th style="width: 90px;">运维开始时间</th>
-                                    <th style="width: 90px;">运维结束时间</th>
+                                    <th style="width: 80px;">前端工程师</th>
+                                    <th style="width: 80px;">后端工程师</th>
+                                    <th style="width: 90px;">测试工程师</th>
+                                    <th style="width: 80px;">运维工程师</th>
                                     <th style="width: 80px;">上线时间</th>
                                     <th style="width: 200px;">备注</th>
                                     <th style="width: 80px;">操作</th>
@@ -216,24 +204,36 @@
                                         <td>{{$task->come_from}}</td>
                                         <td>{{$task->category}}</td>
                                         <td>{{$task->content}}</td>
-                                        <td>{{$task->ioser_alias}}</td>
-                                        <td>{{$task->ioser_start_at}}</td>
-                                        <td>{{$task->ioser_end_at}}</td>
-                                        <td>{{$task->androider_alias}}</td>
-                                        <td>{{$task->androider_start_at}}</td>
-                                        <td>{{$task->androider_end_at}}</td>
-                                        <td>{{$task->uier_alias}}</td>
-                                        <td>{{$task->uier_start_at}}</td>
-                                        <td>{{$task->uier_end_at}}</td>
-                                        <td>{{$task->phper_alias}}</td>
-                                        <td>{{$task->phper_start_at}}</td>
-                                        <td>{{$task->phper_end_at}}</td>
-                                        <td>{{$task->tester_alias}}</td>
-                                        <td>{{$task->tester_start_at}}</td>
-                                        <td>{{$task->tester_end_at}}</td>
-                                        <td>{{$task->devopser_alias}}</td>
-                                        <td>{{$task->devopser_start_at}}</td>
-                                        <td>{{$task->devopser_end_at}}</td>
+                                        <td>
+                                            {{$task->ioser_alias}}<br>
+                                            {{$task->ioser_start_at}}<br>
+                                            {{$task->ioser_end_at}}
+                                        </td>
+                                        <td>
+                                            {{$task->androider_alias}}<br>
+                                            {{$task->androider_start_at}}<br>
+                                            {{$task->androider_end_at}}
+                                        </td>
+                                        <td>
+                                            {{$task->uier_alias}}<br>
+                                            {{$task->uier_start_at}}<br>
+                                            {{$task->uier_end_at}}
+                                        </td>
+                                        <td>
+                                            {{$task->phper_alias}}<br>
+                                            {{$task->phper_start_at}}<br>
+                                            {{$task->phper_end_at}}
+                                        </td>
+                                        <td>
+                                            {{$task->tester_alias}}<br>
+                                            {{$task->tester_start_at}}<br>
+                                            {{$task->tester_end_at}}
+                                        </td>
+                                        <td>
+                                            {{$task->devopser_alias}}<br>
+                                            {{$task->devopser_start_at}}<br>
+                                            {{$task->devopser_end_at}}
+                                        </td>
                                         <td>{{$task->published_at}}</td>
                                         <td>{{$task->note}}</td>
                                         <td>
@@ -309,7 +309,7 @@
         "columnDefs": [
           {
             "className": "text-center",
-            "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+            "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
           }
         ],
       });

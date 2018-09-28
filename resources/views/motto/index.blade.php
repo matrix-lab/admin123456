@@ -54,12 +54,12 @@
                             <table id="zero_config" class="table table-responsive-md table-bordered">
                                 <thead>
                                 <tr>
-                                    <th><i class="mdi mdi-account-alert"> 发布人</i></th>
-                                    <th><i class="mdi mdi-heart"> 爱心</i></th>
-                                    <th><i class="mdi mdi-console"> 内容</i></th>
-                                    <th><i class="mdi mdi-clock"> 创建时间</i></th>
-                                    <td><i class="mdi mdi-clock"> 状态</i></td>
-                                    <th style="width: 80px;"><i class="mdi mdi-shuffle"> 操作</i></th>
+                                    <th>发布人</th>
+                                    <th>爱心</th>
+                                    <th>内容</th>
+                                    <th>创建时间</th>
+                                    <td>状态</td>
+                                    <th style="width: 80px;">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
