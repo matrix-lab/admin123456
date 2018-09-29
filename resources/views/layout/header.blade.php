@@ -24,12 +24,12 @@
                     </a>
                 </li>
                 {{--<li class="nav-item search-box">--}}
-                    {{--<a class="nav-link waves-effect waves-dark"--}}
-                       {{--href="javascript:void(0)"><i class="ti-search"></i></a>--}}
-                    {{--<form class="app-search position-absolute">--}}
-                        {{--<input type="text" class="form-control" placeholder="HA HA HA"> <a--}}
-                                {{--class="srh-btn"><i class="ti-close"></i></a>--}}
-                    {{--</form>--}}
+                {{--<a class="nav-link waves-effect waves-dark"--}}
+                {{--href="javascript:void(0)"><i class="ti-search"></i></a>--}}
+                {{--<form class="app-search position-absolute">--}}
+                {{--<input type="text" class="form-control" placeholder="HA HA HA"> <a--}}
+                {{--class="srh-btn"><i class="ti-close"></i></a>--}}
+                {{--</form>--}}
                 {{--</li>--}}
             </ul>
             <ul class="navbar-nav float-right">
@@ -41,7 +41,7 @@
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                        <a class="dropdown-item" href="javascript:void(0)">
+                        <a class="dropdown-item" href="/task?me={{Auth::user()->name}}">
                             <i class="ti-user m-r-5 m-l-5"></i> 我的任务</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
