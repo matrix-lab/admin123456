@@ -58,7 +58,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label for="reason"
-                                                   class="col-sm-3 text-right control-label col-form-label">导致原因</label>
+                                                   class="col-sm-3 text-right control-label col-form-label">原因</label>
                                             <div class="col-sm-8">
                                                 <textarea name="reason" id="reason" class="form-control"></textarea>
                                             </div>
