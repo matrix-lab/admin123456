@@ -184,10 +184,10 @@
                                     <th style="width: 60px;">来源</th>
                                     <th style="width: 60px;">模块</th>
                                     <th style="width: 200px;">任务</th>
-                                    <th style="width: 80px;">苹果工程师</th>
-                                    <th style="width: 80px;">安卓工程师</th>
-                                    <th style="width: 80px;">前端工程师</th>
-                                    <th style="width: 80px;">后端工程师</th>
+                                    <th style="width: 90px;">IOS工程师</th>
+                                    <th style="width: 100px;">Android工程师</th>
+                                    <th style="width: 80px;">UI工程师</th>
+                                    <th style="width: 80px;">PHP工程师</th>
                                     <th style="width: 90px;">测试工程师</th>
                                     <th style="width: 80px;">运维工程师</th>
                                     <th style="width: 80px;">上线时间</th>
@@ -207,34 +207,35 @@
                                         <td>{{$task->category}}</td>
                                         <td>{{$task->content}}</td>
                                         <td>
-                                            {{$task->ioser_alias}}<br>
-                                            <span style="color: green;font-weight: bold;">{{$task->ioser_start_at}}</span><br>
-                                            <span style="color: red;font-weight: bold;">{{$task->ioser_end_at}}</span>
+                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->ioser_alias}}</p>
+                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->ioser_start_at}}</p>
+                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->ioser_end_at}}</p>
                                         </td>
                                         <td>
-                                            {{$task->androider_alias}}<br>
-                                            <span style="color: green;font-weight: bold;">{{$task->androider_start_at}}</span><br>
-                                            <span style="color: red;font-weight: bold;">{{$task->androider_end_at}}</span>
+                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->androider_alias}}</p>
+                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->androider_start_at}}</p>
+                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->androider_end_at}}</p>
                                         </td>
                                         <td>
-                                            {{$task->uier_alias}}<br>
-                                            <span style="color: green;font-weight: bold;">{{$task->uier_start_at}}</span><br>
-                                            <span style="color: red;font-weight: bold;">{{$task->uier_end_at}}</span>
+                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->uier_alias}}</p>
+                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->uier_start_at}}</p>
+                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->uier_end_at}}</p>
                                         </td>
                                         <td>
-                                            {{$task->phper_alias}}<br>
-                                            <span style="color: green;font-weight: bold;">{{$task->phper_start_at}}</span><br>
-                                            <span style="color: red;font-weight: bold;">{{$task->phper_end_at}}</span>
+                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->phper_alias}}</p>
+                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->phper_start_at}}</p>
+                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->phper_end_at}}</p>
                                         </td>
                                         <td>
-                                            {{$task->tester_alias}}<br>
-                                            <span style="color: green;font-weight: bold;">{{$task->tester_start_at}}</span><br>
-                                            <span style="color: red;font-weight: bold;">{{$task->tester_end_at}}</span>
+                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->tester_alias}}</p>
+                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->tester_start_at}}</p>
+                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->tester_end_at}}</p>
+
                                         </td>
                                         <td>
-                                            {{$task->devopser_alias}}<br>
-                                            <span style="color: green;font-weight: bold;">{{$task->devopser_start_at}}</span><br>
-                                            <span style="color: red;font-weight: bold;">{{$task->devopser_end_at}}</span>
+                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->devopser_alias}}</p>
+                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->devopser_start_at}}</p>
+                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->devopser_end_at}}</p>
                                         </td>
                                         <td>{{$task->published_at}}</td>
                                         <td>{{$task->note}}</td>

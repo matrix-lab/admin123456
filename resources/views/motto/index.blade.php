@@ -55,7 +55,7 @@
                                 <thead>
                                 <tr>
                                     <th style="width: 100px;">发布人</th>
-                                    <th style="width: 60px;">爱心</th>
+                                    <th style="width: 60px;">点赞</th>
                                     <th>内容</th>
                                     <th style="width: 100px;">创建时间</th>
                                     <td style="width: 60px;">状态</td>
