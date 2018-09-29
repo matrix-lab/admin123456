@@ -44,7 +44,7 @@
 {{--<div class="lds-pos"></div>--}}
 {{--</div>--}}
 {{--</div>--}}
-<div id="main-wrapper">
+<div id="main-wrapper" data-sidebartype="mini-sidebar" class="mini-sidebar">
     @include('layout.header')
     @include('layout.aside')
     <div class="page-wrapper">
