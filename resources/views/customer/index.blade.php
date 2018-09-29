@@ -163,36 +163,38 @@
     <script>
       $('#zero_config').DataTable({
         "order": [[6, "asc"]],
+        "pageLength": 50,
         "columnDefs": [
           {"className": "text-center", "targets": [0, 1, 2, 3, 4, 5, 6, 7]}
         ],
       });
 
-      $("#store").on('hidden.bs.modal',function(e){
+      $("#store").on('hidden.bs.modal', function (e) {
         $("label.error").remove();
       });
-      jQuery.validator.addMethod("isMobile", function(value, element) {
+      jQuery.validator.addMethod("isMobile", function (value, element) {
         var length = value.length;
         var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
-        return this.optional(element) || (length == 11 && mobile.test(value));	});
+        return this.optional(element) || (length == 11 && mobile.test(value));
+      });
 
       var vali;
-      $(function() {
+      $(function () {
         vali = $("#cutomer").validate({
-          rules : {
-            name : "required",
-            city : "required",
-            master : "required",
-            contact : {
-              required:true,
-              isMobile : true
+          rules: {
+            name: "required",
+            city: "required",
+            master: "required",
+            contact: {
+              required: true,
+              isMobile: true
             },
           },
-          messages : {
-            name : "请输入您的名字",
-            city : "请输入所在城市",
-            master : "请输入负责人姓名",
-            contact : "请输入联系方式",
+          messages: {
+            name: "请输入您的名字",
+            city: "请输入所在城市",
+            master: "请输入负责人姓名",
+            contact: "请输入联系方式",
           }
         });
       });
