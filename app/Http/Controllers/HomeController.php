@@ -68,7 +68,7 @@ class HomeController extends Controller
 
     public function motto()
     {
-        $mottos = Motto::all();
+        $mottos = Motto::where('status', 0)->get();
 
         return view('motto.index', ['mottos' => $mottos]);
     }
