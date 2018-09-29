@@ -282,7 +282,6 @@
             </div>
         </div>
         {{--DELETE MODAL--}}
-
     </div>
 @endsection
 @section('scripts')
@@ -299,6 +298,9 @@
         "scrollX": true,
         'fixedHeader': true,
         "pageLength": 100,
+        "search": {
+          "search": "{{Request::query('me')}}"
+        },
         "columnDefs": [
           {
             "className": "text-center",
