@@ -12,7 +12,12 @@ class VersionController extends Controller
 {
     public function index()
     {
-        //
+        return [
+            'code'  => 0,
+            'msg'   => '',
+            'count' => Version::count('id'),
+            'data'  => Version::orderBy('id', 'DESC')->get(),
+        ];
     }
 
     public function store(Request $request)

@@ -1,310 +1,230 @@
-@extends('layout.main')
-@section('title', 'Fangxin DevOps Release')
-<link rel="stylesheet" type="text/css" href="/assets/libs/select2/dist/css/select2.min.css">
+@extends('layouts.main')
+@section('title', 'Super DevOps HomePage')
 @section('content')
-    <div class="page-breadcrumb">
-        <div class="row">
-            <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">发布清单</h4>
-                <div class="ml-auto text-right">
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#store"><i
-                                class="fa fa-plus"></i> 新建
-                    </button>
-                    <div class="modal fade" id="store" tabindex="-1" role="dialog" aria-labelledby="storeModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="storeModalLabel">创建发布</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="form-horizontal" name="version" id="version">
-                                        <div class="form-group row">
-                                            <label for="issue"
-                                                   class="col-sm-3 text-right control-label col-form-label">修复问题</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="issue" name="issue"
-                                                       placeholder="您要修复的问题">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="branch"
-                                                   class="col-sm-3 text-right control-label col-form-label">发布分支</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="branch" name="branch"
-                                                       placeholder="您要发布的分支">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="customer"
-                                                   class="col-sm-3 text-right control-label col-form-label">目标客户</label>
-                                            <div class="col-sm-8">
-                                                <select class="select2 form-control" multiple="multiple"
-                                                        name="customer" id="customer" style="height: 36px;width:
-                                                    100%;">
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="appointed_at"
-                                                   class="col-sm-3 text-right control-label col-form-label">发布时间</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control appointed_at" id="appointed_at"
-                                                       name="appointed_at">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="reason"
-                                                   class="col-sm-3 text-right control-label col-form-label">原因</label>
-                                            <div class="col-sm-8">
-                                                <textarea name="reason" id="reason" class="form-control"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="note"
-                                                   class="col-sm-3 text-right control-label col-form-label">执行脚本</label>
-                                            <div class="col-sm-8">
-                                                <textarea name="note" id="note" class="form-control"></textarea>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" id="save">保存</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="layui-row">
+        <div class="layui-col-xs11">
+           <span class="layui-breadcrumb">
+              <a href="/">首页</a>
+              <a><cite>发布管理</cite></a>
+            </span>
+        </div>
+        <div class="layui-col-xs1" style="text-align: right;">
+            <button class="layui-btn layui-btn-sm layui-btn-normal" data-method="offset" data-type="t">
+                <i class="layui-icon">&#xe608;</i> 添加
+            </button>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="zero_config" class="table table-responsive-md table-bordered"
-                                   data-customers="{{$customers}}">
-                                <thead>
-                                <tr>
-                                    <th style="width: 100px;">问题</th>
-                                    <th style="width: 45px;">分支</th>
-                                    <th>客户</th>
-                                    <th style="width: 90px;">预约时间</th>
-                                    <th style="width: 60px;">申请人</th>
-                                    <th style="width: 60px;">审批人</th>
-                                    <th style="width: 60px;">发布人</th>
-                                    <th style="width: 60px;">进度</th>
-                                    <th style="width: 60px;">状态</th>
-                                    <th style="width: 100px;">创建时间</th>
-                                    <th style="width: 80px;">操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {{--&#10;--}}
-                                @foreach ($versions as $version)
-                                    <tr>
-                                        <td title="故障原因:{{$version->reason}}"
-                                            style="color: blue;">{{$version->issue}}</td>
-                                        <td>{{$version->branch}}</td>
-                                        <td>{{$version->customer_alias}}</td>
-                                        <td>{{$version->appointed_at}}</td>
-                                        <td title="申请时间:{{$version->applyed_at}}"
-                                            style="color: blue;">{{$version->applyer_alias}}</td>
-                                        <td title="审核时间:{{$version->approved_at}}"
-                                            style="color: blue;">{{$version->approver_alias}}</td>
-                                        <td title="完成时间:{{$version->published_at}}"
-                                            style="color: blue;">{{$version->publisher_alias}}</td>
-                                        <td>{{$version->progress}}</td>
-                                        <td style="color: {{$version->status == '未完成'?'red;':'green; font-weight:bold;'}}">{{$version->status}}</td>
-                                        <td>{{$version->created_at}}</td>
-                                        <td>
-                                            <a class="user-delete" data-json="{{$version}}"
-                                               style="display: inline-block; cursor: pointer; color: red;">
-                                                删除
-                                            </a>
-                                            <a class="user-update" data-json="{{$version}}"
-                                               style="display: inline-block; cursor: pointer; color: blue;">
-                                                编辑
-                                            </a>
-                                            @if($version->progress === '待审核')
-                                                <a class="user-approve" data-json="{{$version}}"
-                                                   style="display: inline-block; cursor: pointer; color: #ff0084;">
-                                                    审核
-                                                </a>
-                                            @endif
-                                            @if($version->progress === '待发布')
-                                                <a class="user-finish" data-json="{{$version}}"
-                                                   style="display: inline-block; cursor: pointer; color: green;">
-                                                    发布
-                                                </a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+    <table class="layui-hide" id="version" lay-filter="version"></table>
+    <div id="version_html" style="display: none;">
+        <form class="layui-form" lay-filter="devops-version" id="devops-version" style="margin-top: 15px;">
+            <div class="layui-row">
+                <div class="layui-col-xs10">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">修复问题</label>
+                        <div class="layui-input-block">
+                            <input type="text"
+                                   name="issue"
+                                   required
+                                   lay-verify="required"
+                                   placeholder="描述问题"
+                                   autocomplete="off"
+                                   class="layui-input">
                         </div>
                     </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">分支</label>
+                        <div class="layui-input-block">
+                            <input type="text"
+                                   name="branch"
+                                   required
+                                   lay-verify="required"
+                                   placeholder="发布分支"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">目标客户</label>
+                        <div class="layui-input-block">
+                            <input type="text"
+                                   name="customer_alias"
+                                   required
+                                   lay-verify="required"
+                                   placeholder="客户用逗号分割"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">发布时间</label>
+                        <div class="layui-input-block">
+                            <input type="text"
+                                   id="appointed_at"
+                                   name="appointed_at"
+                                   required
+                                   lay-verify="datetime"
+                                   placeholder="预订发布时间"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">原因</label>
+                        <div class="layui-input-block">
+                            <textarea name="reason" placeholder="引起原因" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">执行脚本</label>
+                        <div class="layui-input-block">
+                            <textarea name="note" placeholder="执行脚本" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-hide">
+                        <input type="button" lay-submit="" lay-filter="devops-version-submit"
+                               id="devops-version-submit"
+                               value="确认">
+                    </div>
                 </div>
             </div>
-        </div>
-
-        {{--DELETE MODAL--}}
-        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="updateModalLabel">来自上帝的忠告</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        此去一别，应是今生最后一面！
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" id="say-good-bye">永别</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{--DELETE MODAL--}}
-
+        </form>
     </div>
 @endsection
 @section('scripts')
-    <script src="/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-    <script src="/assets/libs/select2/dist/js/select2.min.js"></script>
+    <script type="text/html" id="operation">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        @{{#  if(d.progress == '待审批'){ }}
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="apply">审批</a>
+        @{{#  } else if(d.progress == '待发布') { }}
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="publish">发布</a>
+        @{{#  } }}
+    </script>
     <script>
-
-      $(function (e) {
-        $(".appointed_at").inputmask("yyyy-mm-dd hh:mm:ss");
-        $.each($("#zero_config").data('customers'), function (index, item) {
-          $("#customer").append(new Option(item, index));
+      layui.use(['table', 'laydate', 'flow'], function () {
+        var $ = layui.jquery, table = layui.table, form = layui.form, laydate = layui.laydate;
+        laydate.render({
+          elem: '#appointed_at',
+          type: 'datetime'
         });
-        $(".select2").select2();
-      });
-
-      $('#zero_config').DataTable({
-        "order": [[9, "desc"]],
-        "columnDefs": [
-          {"className": "text-center", "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-        ],
-      });
-
-      //添加操作
-      $("#save").click(function () {
-        if ($(this).data('json') == undefined) {
-          var promise = axios.post('/api/version', {
-            issue: $("#issue").val(),
-            branch: $("#branch").val(),
-            customer_ids: $("#customer").val().join(','),
-            customer_alias: $("#customer option:selected").text(),
-            appointed_at: $("#appointed_at").val(),
-            reason: $("#reason").val(),
-            note: $("#note").val(),
-            _token: "{{ csrf_token() }}"
+        // 添加
+        $('.layui-btn-normal').on('click', function () {
+          form.val("devops-version", {
+            "issue": "",
+            "branch": "",
+            "customer_alias": "",
+            "appointed_at": "",
+            "reason": "",
+            "note": ""
           })
-        } else {
-          var promise = axios.put('/api/version/' + $(this).data('json').id, {
-            issue: $("#issue").val(),
-            branch: $("#branch").val(),
-            customer_ids: $("#customer").val().join(','),
-            customer_alias: $("#customer option:selected").text(),
-            appointed_at: $("#appointed_at").val(),
-            reason: $("#reason").val(),
-            note: $("#note").val(),
-            _token: "{{ csrf_token() }}"
-          })
-        }
-        promise.then(function () {
-          toastr.success('👍👍👍', '干的漂亮');
-          $("#store").modal('hide');
-        }).catch(function () {
-          toastr.error('👎👎👎', '姿势不对');
-        }).then(function () {
-          $("#user")[0].reset();
-        }).then(function () {
-          window.location.reload();
-        })
-      });
-
-      // 删除操作 //
-      $(".user-delete").on('click', function () {
-        $("#delete").modal('show');
-        $("#say-good-bye").data('json', $(this).data('json'));
-      });
-      $("#say-good-bye").click(function () {
-        axios.delete('/api/version/' + $(this).data('json').id).then(function () {
-          toastr.success('👍👍👍', '干的漂亮');
-          $("#store").modal('hide');
-        }).catch(function () {
-          toastr.error('👎👎👎', '姿势不对');
-        }).then(function () {
-          $("#delete").modal('hide')
-        }).then(function () {
-          window.location.reload();
-        })
-      });
-      // 删除操作 //
-
-      // 编辑操作 //
-      $(".user-update").on('click', function () {
-        var customer_ids = $(this).data('json').customer_ids;
-        $("#customer").html("");
-        $.each($("#zero_config").data('customers'), function (index, item) {
-          if ($.inArray(index, customer_ids.split(',')) >= 0) {
-            $("#customer").append(new Option(item, index, index, true));
-          } else {
-            $("#customer").append(new Option(item, index));
+          layer.open({
+            type: 1,
+            title: '创建发布',
+            shade: false,
+            anim: 6,
+            area: '480px',
+            content: $('#version_html'),
+            moveType: 1,
+            btn: ['保存', '关闭'],
+            yes: function (index, layero) {
+              form.on('submit(devops-version-submit)', function (data) {
+                axios.post('/api/version', data.field).then(function () {
+                  layer.msg('👍👍👍干的漂亮')
+                }).then(function () {
+                  table.reload('version');
+                  layer.close(index)
+                })
+              });
+              $('#devops-version-submit').trigger('click');
+            },
+            btn2: function (index, layero) {
+              layer.close(index)
+            }
+          });
+        });
+        // 表格数据
+        table.render({
+          elem: '#version'
+          , url: '/api/version/'
+          , cellMinWidth: 80
+          , cols: [[
+            {field: 'issue', width: 180, align: 'center', title: '问题'}
+            , {field: 'branch', minWidth: 100, align: 'center', title: '分支'}
+            , {field: 'customer_alias', minWidth: 120, align: 'center', title: '目标客户'}
+            , {field: 'appointed_at', width: 165, align: 'center', title: '预约时间'}
+            , {field: 'applyer_alias', width: 80, align: 'center', title: '申请人'}
+            , {field: 'approver_alias', width: 80, align: 'center', title: '审批人'}
+            , {field: 'publisher_alias', width: 80, align: 'center', title: '发布人'}
+            , {field: 'progress', width: 75, title: '进度'}
+            , {field: 'status', width: 75, title: '状态'}
+            , {field: 'created_at', width: 165, align: 'center', title: '创建时间', sort: true}
+            , {fixed: 'right', title: '操作', align: 'center', toolbar: '#operation', width: 160}
+          ]]
+        });
+        table.on('tool(version)', function (obj) {
+          var me = obj.data;
+          if (obj.event === 'del') {
+            layer.confirm('老铁，真的要永别吗？', function (index) {
+              axios.delete('/api/version/' + me.id).then(function () {
+                layer.msg('👍👍👍干的漂亮')
+                obj.del();
+              }).then(function () {
+                layer.close(index);
+              })
+            });
+          } else if (obj.event === 'edit') {
+            form.val("devops-version", {
+              "issue": me.issue,
+              "branch": me.branch,
+              "customer_alias": me.customer_alias,
+              "appointed_at": me.appointed_at,
+              "reason": me.reason,
+              "note": me.note,
+            })
+            layer.open({
+              type: 1,
+              title: '编辑发布',
+              shade: false,
+              anim: 6,
+              area: '480px',
+              content: $('#version_html'),
+              moveType: 1,
+              btn: ['保存', '关闭'],
+              yes: function (index, layero) {
+                form.on('submit(devops-version-submit)', function (data) {
+                  data.field.team_alias = $("#team_id option:selected").text()
+                  axios.put('/api/version/' + me.id, data.field).then(function () {
+                    layer.msg('👍👍👍干的漂亮')
+                  }).then(function () {
+                    table.reload('version');
+                    layer.close(index)
+                  })
+                });
+                $('#devops-version-submit').trigger('click');
+              },
+              btn2: function (index, layero) {
+                layer.close(index)
+              }
+            });
+          } else if (obj.event === 'apply') {
+            layer.confirm('老铁，真的要给Pass吗？', function (index) {
+              axios.put('/api/version-approve/' + me.id).then(function () {
+                layer.msg('👍👍👍干的漂亮')
+                table.reload('version');
+              }).then(function () {
+                layer.close(index);
+              })
+            });
+          } else if (obj.event === 'publish') {
+            layer.confirm('老铁，确定发布成功了吗？', function (index) {
+              axios.put('/api/version-finish/' + me.id).then(function () {
+                layer.msg('👍👍👍干的漂亮')
+                table.reload('version');
+              }).then(function () {
+                layer.close(index);
+              })
+            });
           }
         });
-        $("#storeModalLabel").html('编辑发布');
-        $("#issue").val($(this).data('json').issue);
-        $("#branch").val($(this).data('json').branch);
-        $("#customer_ids").val($(this).data('json').customer_ids);
-        $("#appointed_at").val($(this).data('json').appointed_at);
-        $("#reason").val($(this).data('json').reason);
-        $("#note").val($(this).data('json').birtnotehday);
-        $("#store").modal('show');
-        $("#save").data('json', $(this).data('json'));
       });
-
-      // 审核 //
-      $(".user-approve").on('click', function () {
-        axios.put('/api/version-approve/' + $(this).data('json').id).then(function () {
-          toastr.success('👍👍👍', '干的漂亮');
-        }).then(function () {
-          window.location.reload();
-        })
-      });
-
-      // 完成 //
-      $(".user-finish").on('click', function () {
-        axios.put('/api/version-finish/' + $(this).data('json').id).then(function () {
-          toastr.success('👍👍👍', '干的漂亮');
-        }).then(function () {
-          window.location.reload();
-        })
-
-      });
-
-
-      $('#store').on('hidden.bs.modal', function (e) {
-        $("#storeModalLabel").html('创建发布');
-        $("#version")[0].reset();
-        $("#save").data('json', null);
-      })
-      // 编辑操作 //
     </script>
 @endsection
-

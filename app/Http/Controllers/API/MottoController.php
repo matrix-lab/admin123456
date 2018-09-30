@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Mail;
 
 class MottoController extends Controller
 {
+    public function index()
+    {
+        return [
+            'code'  => 0,
+            'msg'   => '',
+            'count' => Motto::where('status', 0)->count('id'),
+            'data'  => Motto::where('status', 0)->get(),
+        ];
+    }
+
     public function store(Request $request)
     {
         $request->offsetSet('user_id', Auth::user()->id);
@@ -23,8 +33,9 @@ class MottoController extends Controller
 
     public function update(Request $request, Motto $motto)
     {
-        $request->offsetSet('user_alias', Auth::user()->alias);
-        $request->offsetSet('user_email', Auth::user()->email);
+        $user = Auth::user();
+        $request->offsetSet('user_alias', $user->alias);
+        $request->offsetSet('user_email', $user->email);
 
         $motto->update($request->all());
 

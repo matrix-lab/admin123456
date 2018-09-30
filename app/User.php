@@ -34,4 +34,13 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    protected $appends = [
+        'avatar',
+    ];
+
+    public function getAvatarAttribute()
+    {
+        return avatar($this->email);
+    }
 }

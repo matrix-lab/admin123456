@@ -13,7 +13,7 @@ class TeamController extends Controller
         return [
             'code'  => 0,
             'msg'   => '',
-            'count' => 100,
+            'count' => Team::count('id'),
             'data'  => Team::orderBy('id', 'DESC')->get(),
         ];
     }

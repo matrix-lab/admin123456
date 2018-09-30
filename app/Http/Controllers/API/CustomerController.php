@@ -10,11 +10,18 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        //
+        return [
+            'code'  => 0,
+            'msg'   => '',
+            'count' => Customer::count('id'),
+            'data'  => Customer::orderBy('id', 'DESC')->get(),
+        ];
     }
 
     public function store(Request $request)
     {
+        $request->offsetSet('customer_id', 0);
+
         return Customer::create($request->all());
     }
 

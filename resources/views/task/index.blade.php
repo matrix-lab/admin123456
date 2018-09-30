@@ -1,441 +1,295 @@
-@extends('layout.main')
-@section('title', 'Fangxin DevOps Task')
-<link rel="stylesheet" type="text/css" href="/assets/libs/select2/dist/css/select2.min.css">
+@extends('layouts.main')
+@section('title', 'Super DevOps HomePage')
 @section('content')
-    <div class="page-breadcrumb">
-        <div class="row">
-            <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">任务清单</h4>
-                <div class="ml-auto text-right">
-                    <button type="button" class="btn btn-primary" onclick="download()"><i class="fa fa-download"></i> 下载
-                    </button>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#store"><i
-                                class="fa fa-plus"></i> 新建
-                    </button>
-                    <div class="modal fade" id="store" tabindex="-1" role="dialog" aria-labelledby="storeModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="storeModalLabel">创建任务</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="form-horizontal" name="task" id="task">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label for="team_id"
-                                                           class="col-sm-4 text-right control-label col-form-label">团队</label>
-                                                    <div class="col-sm-7">
-                                                        <select name="team_id" id="team_id" class="form-control">
-                                                            @foreach(\App\Models\Team::all() as $team)
-                                                                <option value="{{$team->id}}">{{$team->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label for="product"
-                                                           class="col-sm-4 text-right control-label col-form-label">产品</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="text" class="form-control" id="product"
-                                                               name="product" placeholder="ERP">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label for="come_from"
-                                                           class="col-sm-4 text-right control-label col-form-label">来源</label>
-                                                    <div class="col-sm-7">
-                                                        <select name="come_from" id="come_from" class="form-control">
-                                                            @foreach(\App\Models\Customer::all() as $customer)
-                                                                <option value="{{$customer->name}}">{{$customer->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label for="category"
-                                                           class="col-sm-4 text-right control-label col-form-label">模块</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="text" class="form-control category"
-                                                               id="category"
-                                                               name="category"
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label for="come_from"
-                                                           class="col-sm-4 text-right control-label col-form-label">工程师</label>
-                                                    <div class="col-sm-7">
-                                                        <select name="type" id="type" class="form-control">
-                                                            <option value="ui">前端工程师</option>
-                                                            <option value="php">PHP工程师</option>
-                                                            <option value="ios">IOS工程师</option>
-                                                            <option value="android">Android工程师</option>
-                                                            <option value="devops">运维工程师</option>
-                                                            <option value="test">测试工程师</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label for="category"
-                                                           class="col-sm-4 text-right control-label col-form-label">上线时间</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="text" class="form-control published_at"
-                                                               id="published_at"
-                                                               name="published_at"
-                                                               placeholder=""
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label for="started_at"
-                                                           class="col-sm-4 text-right control-label col-form-label">开始时间</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="text" class="form-control" id="started_at"
-                                                               name="started_at" placeholder="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label for="ended_at"
-                                                           class="col-sm-4 text-right control-label col-form-label">结束时间</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="text" class="form-control ended_at"
-                                                               id="ended_at"
-                                                               name="ended_at"
-                                                               placeholder=""
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group row">
-                                                    <label for="content"
-                                                           class="col-sm-2 text-center control-label col-form-label">任务</label>
-                                                    <div class="col-sm-10">
-                                                        <textarea name="content" id="content" class="form-control"
-                                                                  style="width: 365px;height: 90px;"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group row">
-                                                    <label for="note"
-                                                           class="col-sm-2 text-center control-label col-form-label">备注</label>
-                                                    <div class="col-sm-10">
-                                                        <textarea name="note" id="note" class="form-control"
-                                                                  style="width: 365px;height: 60px;"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" id="save">保存</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="layui-row">
+        <div class="layui-col-xs11">
+           <span class="layui-breadcrumb">
+              <a href="/">首页</a>
+              <a><cite>任务管理</cite></a>
+            </span>
+        </div>
+        <div class="layui-col-xs1" style="text-align: right;">
+            <button class="layui-btn layui-btn-sm layui-btn-normal" data-method="offset" data-type="t">
+                <i class="layui-icon">&#xe608;</i> 添加
+            </button>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="zero_config" class="table table-responsive-md table-bordered"
-                                   data-users="{{$users}}">
-                                <thead>
-                                <tr>
-                                    <th style="width: 100px;">团队</th>
-                                    <th style="width: 45px;">产品</th>
-                                    <th style="width: 60px;">来源</th>
-                                    <th style="width: 60px;">模块</th>
-                                    <th style="width: 200px;">任务</th>
-                                    <th style="width: 90px;">IOS工程师</th>
-                                    <th style="width: 100px;">Android工程师</th>
-                                    <th style="width: 80px;">UI工程师</th>
-                                    <th style="width: 80px;">PHP工程师</th>
-                                    <th style="width: 90px;">测试工程师</th>
-                                    <th style="width: 80px;">运维工程师</th>
-                                    <th style="width: 80px;">上线时间</th>
-                                    <th style="width: 200px;">备注</th>
-                                    <th style="width: 80px;">进度</th>
-                                    <th style="width: 80px;">状态</th>
-                                    <th style="width: 80px;">操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {{--&#10;--}}
-                                @foreach ($tasks as $task)
-                                    <tr>
-                                        <td>{{$task->team_alias}}</td>
-                                        <td>{{$task->product}}</td>
-                                        <td>{{$task->come_from}}</td>
-                                        <td>{{$task->category}}</td>
-                                        <td>{{$task->content}}</td>
-                                        <td>
-                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->ioser_alias}}</p>
-                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->ioser_start_at}}</p>
-                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->ioser_end_at}}</p>
-                                        </td>
-                                        <td>
-                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->androider_alias}}</p>
-                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->androider_start_at}}</p>
-                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->androider_end_at}}</p>
-                                        </td>
-                                        <td>
-                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->uier_alias}}</p>
-                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->uier_start_at}}</p>
-                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->uier_end_at}}</p>
-                                        </td>
-                                        <td>
-                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->phper_alias}}</p>
-                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->phper_start_at}}</p>
-                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->phper_end_at}}</p>
-                                        </td>
-                                        <td>
-                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->tester_alias}}</p>
-                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->tester_start_at}}</p>
-                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->tester_end_at}}</p>
-
-                                        </td>
-                                        <td>
-                                            <p style="margin: 0; height: 20px;line-height: 20px;">{{$task->devopser_alias}}</p>
-                                            <p style="color: green;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->devopser_start_at}}</p>
-                                            <p style="color: red;font-weight: bold;margin: 0;height: 20px;line-height: 20px;">{{$task->devopser_end_at}}</p>
-                                        </td>
-                                        <td>{{$task->published_at}}</td>
-                                        <td>{{$task->note}}</td>
-                                        <td>{{$task->progress}}</td>
-                                        <td>{{$task->status}}</td>
-                                        <td>
-                                            <a class="user-delete" data-json="{{$task}}"
-                                               style="display: inline-block; cursor: pointer; color: red;">
-                                                删除
-                                            </a>
-                                            <a class="user-update" data-json="{{$task}}"
-                                               style="display: inline-block; cursor: pointer; color: blue;">
-                                                编辑
-                                            </a>
-                                        </td>
-                                    </tr>
+    <table class="layui-hide" id="task" lay-filter="task"></table>
+    <div id="task_html" style="display: none;">
+        <form class="layui-form" lay-filter="devops-task" id="devops-task" style="margin-top: 15px;">
+            <div class="layui-row">
+                <div class="layui-col-xs5">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">团队</label>
+                        <div class="layui-input-block">
+                            <select name="team_id" lay-verify="required" id="team_id">
+                                @foreach(\App\Models\Team::all() as $team)
+                                    <option value="{{$team->id}}">{{$team->name}}</option>
                                 @endforeach
-                                </tbody>
-                            </table>
+                            </select>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        {{--DELETE MODAL--}}
-        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="updateModalLabel">来自上帝的忠告</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        此去一别，应是今生最后一面！
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" id="say-good-bye">永别</button>
+                <div class="layui-col-xs5">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">产品</label>
+                        <div class="layui-input-block">
+                            <input type="text"
+                                   name="product"
+                                   required
+                                   lay-verify="required"
+                                   placeholder="产品类型"
+                                   autocomplete="off" class="layui-input">
+                        </div>
                     </div>
                 </div>
+                <div class="layui-col-xs5">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">来源</label>
+                        <div class="layui-input-block">
+                            <select name="come_from" id="come_from" lay-verify="required">
+                                @foreach(\App\Models\Customer::all() as $customer)
+                                    <option value="{{$customer->name}}">{{$customer->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs5">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">模块</label>
+                        <div class="layui-input-block">
+                            <input type="text"
+                                   id="category"
+                                   name="category"
+                                   required
+                                   lay-verify="required"
+                                   placeholder="所属业务模块"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs5">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">工程师</label>
+                        <div class="layui-input-block">
+                            <select name="type" lay-verify="required" id="type">
+                                <option value="ui">前端工程师</option>
+                                <option value="php">PHP工程师</option>
+                                <option value="ios">IOS工程师</option>
+                                <option value="android">Android工程师</option>
+                                <option value="devops">运维工程师</option>
+                                <option value="test">测试工程师</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs5">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">上线时间</label>
+                        <div class="layui-input-block">
+                            <input type="text"
+                                   id="published_at"
+                                   name="published_at"
+                                   required
+                                   lay-verify="date"
+                                   placeholder="任务上线时间"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-xs5">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">开始时间</label>
+                        <div class="layui-input-block">
+                            <input type="text"
+                                   id="started_at"
+                                   name="started_at"
+                                   required
+                                   lay-verify="date"
+                                   placeholder="任务开始时间"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-xs5">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">结束时间</label>
+                        <div class="layui-input-block">
+                            <input type="text"
+                                   id="ended_at"
+                                   name="ended_at"
+                                   required
+                                   lay-verify="date"
+                                   placeholder="任务结束时间"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-xs10">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">任务</label>
+                        <div class="layui-input-block">
+                            <textarea name="content" placeholder="任务详情" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs10">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">备注</label>
+                        <div class="layui-input-block">
+                            <textarea name="note" placeholder="备注" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-hide">
+                    <input type="button" lay-submit="" lay-filter="devops-task-submit"
+                           id="devops-task-submit"
+                           value="确认">
+                </div>
             </div>
-        </div>
-        {{--DELETE MODAL--}}
+        </form>
     </div>
 @endsection
 @section('scripts')
-    <script src="/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-    <script src="/assets/libs/select2/dist/js/select2.min.js"></script>
+    <script type="text/html" id="operation">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        @{{#  if(d.progress == '待审批'){ }}
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="apply">审批</a>
+        @{{#  } else if(d.progress == '待发布') { }}
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="publish">发布</a>
+        @{{#  } }}
+    </script>
     <script>
-      $(function (e) {
-        $("#published_at").inputmask("yyyy-mm-dd");
-        $("#started_at").inputmask("yyyy-mm-dd");
-        $("#ended_at").inputmask("yyyy-mm-dd");
-      });
-
-      $('#zero_config').DataTable({
-        "scrollX": true,
-        'fixedHeader': true,
-        "pageLength": 100,
-        "search": {
-          "search": "{{Request::query('me')}}"
-        },
-        "columnDefs": [
-          {
-            "className": "text-center",
-            "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+      layui.use(['table', 'laydate', 'flow'], function () {
+        var $ = layui.jquery, table = layui.table, form = layui.form, laydate = layui.laydate;
+        laydate.render({
+          elem: '#published_at',
+        });
+        laydate.render({
+          elem: '#started_at',
+        });
+        laydate.render({
+          elem: '#ended_at',
+        });
+        // 添加
+        $('.layui-btn-normal').on('click', function () {
+          form.val("devops-task", {
+            "team_id": "",
+            "product": "",
+            "come_from": "",
+            "category": "",
+            "content": "",
+            "type": "",
+            "note": "",
+            "published_at": "",
+            "started_at": "",
+            "ended_at": ""
+          })
+          layer.open({
+            type: 1,
+            title: '创建发布',
+            shade: false,
+            anim: 6,
+            area: ['640px', '550px'],
+            content: $('#task_html'),
+            moveType: 1,
+            btn: ['保存', '关闭'],
+            yes: function (index, layero) {
+              form.on('submit(devops-task-submit)', function (data) {
+                data.field.team_alias = $("#team_id option:selected").text()
+                axios.post('/api/task', data.field).then(function () {
+                  layer.msg('👍👍👍干的漂亮')
+                }).then(function () {
+                  table.reload('task');
+                  layer.close(index)
+                })
+              });
+              $('#devops-task-submit').trigger('click');
+            },
+            btn2: function (index, layero) {
+              layer.close(index)
+            }
+          });
+        });
+        // 表格数据
+        table.render({
+          elem: '#task'
+          , url: '/api/task/'
+          , cellMinWidth: 80
+          , cols: [[
+            {field: 'team_alias', width: 100, align: 'center', title: '团队'}
+            , {field: 'product', width: 80, align: 'center', title: '产品'}
+            , {field: 'come_from', width: 100, align: 'center', title: '来源'}
+            , {field: 'category', width: 80, align: 'center', title: '模块'}
+            , {field: 'content', maxWidth: 200, align: 'center', title: '任务'}
+            , {field: 'ioser_alias', width: 80, align: 'center', title: 'IOS'}
+            , {field: 'androider_alias', width: 80, align: 'center', title: 'Android'}
+            , {field: 'uier_alias', width: 80, align: 'center', title: 'UI'}
+            , {field: 'phper_alias', width: 80, align: 'center', title: 'PHP'}
+            , {field: 'tester_alias', width: 80, align: 'center', title: 'TEST'}
+            , {field: 'published_at', width: 105, title: '上线时间', align: 'center'}
+            , {field: 'progress', width: 75, title: '进度'}
+            , {field: 'status', width: 75, title: '状态'}
+            , {field: 'note', maxWidth: 160, title: '备注'}
+            , {fixed: 'right', title: '操作', align: 'center', toolbar: '#operation', width: 115}
+          ]]
+        });
+        table.on('tool(task)', function (obj) {
+          var me = obj.data;
+          if (obj.event === 'del') {
+            layer.confirm('老铁，真的要永别吗？', function (index) {
+              axios.delete('/api/task/' + me.id).then(function () {
+                layer.msg('👍👍👍干的漂亮')
+                obj.del();
+              }).then(function () {
+                layer.close(index);
+              })
+            });
+          } else if (obj.event === 'edit') {
+            form.val("devops-task", {
+              "team_id": me.team_id,
+              "product": me.product,
+              "come_from": me.come_from,
+              "category": me.category,
+              "content": me.content,
+              "type": me.type,
+              "note": me.note,
+              "published_at": me.published_at,
+              "started_at": me[me.type + 'er_start_at'],
+              "ended_at": me[me.type + 'er_end_at'],
+            })
+            layer.open({
+              type: 1,
+              title: '编辑发布',
+              shade: false,
+              anim: 6,
+              area: ['640px', '550px'],
+              content: $('#task_html'),
+              moveType: 1,
+              btn: ['保存', '关闭'],
+              yes: function (index, layero) {
+                form.on('submit(devops-task-submit)', function (data) {
+                  data.field.team_alias = $("#team_id option:selected").text()
+                  axios.put('/api/task/' + me.id, data.field).then(function () {
+                    layer.msg('👍👍👍干的漂亮')
+                  }).then(function () {
+                    table.reload('task');
+                    layer.close(index)
+                  })
+                });
+                $('#devops-task-submit').trigger('click');
+              },
+              btn2: function (index, layero) {
+                layer.close(index)
+              }
+            });
           }
-        ],
+        });
       });
-
-      function download() {
-        window.location.href = '/api/task'
-      }
-
-      //添加操作
-      $("#save").click(function () {
-        if ($(this).data('json') == undefined) {
-          var promise = axios.post('/api/task', {
-            team_id: $("#team_id").val(),
-            team_alias: $("#team_id option:selected").text(),
-            product: $("#product").val(),
-            come_from: $("#come_from").val(),
-            category: $("#category").val(),
-            type: $("#type").val(),
-            published_at: $("#published_at").val(),
-            started_at: $("#started_at").val(),
-            ended_at: $("#ended_at").val(),
-            content: $("#content").val(),
-            note: $("#note").val(),
-            _token: "{{ csrf_token() }}"
-          })
-        } else {
-          var promise = axios.put('/api/task/' + $(this).data('json').id, {
-            team_id: $("#team_id").val(),
-            team_alias: $("#team_id option:selected").text(),
-            product: $("#product").val(),
-            come_from: $("#come_from").val(),
-            category: $("#category").val(),
-            type: $("#type").val(),
-            published_at: $("#published_at").val(),
-            started_at: $("#started_at").val(),
-            ended_at: $("#ended_at").val(),
-            content: $("#content").val(),
-            note: $("#note").val(),
-            _token: "{{ csrf_token() }}"
-          })
-        }
-        promise.then(function () {
-          toastr.success('👍👍👍', '干的漂亮');
-          $("#store").modal('hide');
-        }).catch(function () {
-          toastr.error('👎👎👎', '姿势不对');
-        }).then(function () {
-          $("#task")[0].reset();
-        }).then(function () {
-          window.location.reload();
-        })
-      });
-
-      // 删除操作 //
-      $(".user-delete").on('click', function () {
-        $("#delete").modal('show');
-        $("#say-good-bye").data('json', $(this).data('json'));
-      });
-      $("#say-good-bye").click(function () {
-        axios.delete('/api/task/' + $(this).data('json').id).then(function () {
-          toastr.success('👍👍👍', '干的漂亮');
-          $("#store").modal('hide');
-        }).catch(function () {
-          toastr.error('👎👎👎', '姿势不对');
-        }).then(function () {
-          $("#delete").modal('hide')
-        }).then(function () {
-          window.location.reload();
-        })
-      });
-      // 删除操作 //
-
-      // 编辑操作 //
-      $(".user-update").on('click', function () {
-        if ($(this).data('json').type === 'ui') {
-          $("#started_at").val($(this).data('json').uier_start_at);
-          $("#ended_at").val($(this).data('json').uier_end_at);
-        } else if ($(this).data('json').type === 'app') {
-          $("#started_at").val($(this).data('json').apper_start_at);
-          $("#ended_at").val($(this).data('json').apper_end_at);
-        } else if ($(this).data('json').type === 'php') {
-          $("#started_at").val($(this).data('json').phper_start_at);
-          $("#ended_at").val($(this).data('json').phper_end_at);
-        } else if ($(this).data('json').type === 'test') {
-          $("#started_at").val($(this).data('json').tester_start_at);
-          $("#ended_at").val($(this).data('json').tester_end_at);
-        } else if ($(this).data('json').type === 'devops') {
-          $("#started_at").val($(this).data('json').devopser_start_at);
-          $("#ended_at").val($(this).data('json').devopser_end_at);
-        }
-
-
-        $("#storeModalLabel").html('编辑任务');
-        $("#team_id").val($(this).data('json').team_id);
-        $("#product").val($(this).data('json').product);
-        $("#come_from").val($(this).data('json').come_from);
-        $("#category").val($(this).data('json').category);
-        $("#type").val($(this).data('json').type);
-        $("#published_at").val($(this).data('json').published_at);
-        $("#content").val($(this).data('json').content);
-        $("#note").val($(this).data('json').note);
-        $("#store").modal('show');
-        $("#save").data('json', $(this).data('json'));
-      });
-
-      // 审核 //
-      $(".user-approve").on('click', function () {
-        axios.put('/api/version-approve/' + $(this).data('json').id).then(function () {
-          toastr.success('👍👍👍', '干的漂亮');
-        }).then(function () {
-          window.location.reload();
-        })
-      });
-
-      // 完成 //
-      $(".user-finish").on('click', function () {
-        axios.put('/api/version-finish/' + $(this).data('json').id).then(function () {
-          toastr.success('👍👍👍', '干的漂亮');
-        }).then(function () {
-          window.location.reload();
-        })
-      });
-
-
-      $('#store').on('hidden.bs.modal', function (e) {
-        $("#storeModalLabel").html('创建发布');
-        $("#task")[0].reset();
-        $("#save").data('json', null);
-      })
-      // 编辑操作 //
     </script>
 @endsection
-

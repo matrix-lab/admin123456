@@ -11,7 +11,12 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::all();
+        return [
+            'code'  => 0,
+            'msg'   => '',
+            'count' => User::where('id', '>', 1)->count(),
+            'data'  => User::where('id', '>', 1)->orderBy('id', 'asc')->get(),
+        ];
     }
 
     public function store(Request $request)
