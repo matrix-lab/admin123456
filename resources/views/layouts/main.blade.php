@@ -29,16 +29,23 @@
             </li>
         </ul>
     </div>
-
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree">
-                <li class="layui-nav-item"><a href="{{route('devops.team')}}">团队管理</a></li>
-                <li class="layui-nav-item"><a href="{{route('devops.user')}}">人员管理</a></li>
-                <li class="layui-nav-item"><a href="{{route('devops.customer')}}">客户管理</a></li>
-                <li class="layui-nav-item"><a href="{{route('devops.task')}}">任务管理</a></li>
-                <li class="layui-nav-item"><a href="{{route('devops.version')}}">发布管理</a></li>
-                <li class="layui-nav-item"><a href="{{route('devops.motto')}}">每日一图</a></li>
+                <li class="layui-nav-item  {{\Request::is('/') ? 'layui-this' :''}}"><a
+                            href="/">工作台</a></li>
+                <li class="layui-nav-item  {{\Request::is('team') ? 'layui-this' :''}}"><a
+                            href="{{route('devops.team')}}">团队管理</a></li>
+                <li class="layui-nav-item {{\Request::is('user') ? 'layui-this' :''}}"><a
+                            href="{{route('devops.user')}}">人员管理</a></li>
+                <li class="layui-nav-item {{\Request::is('customer') ? 'layui-this' :''}}"><a
+                            href="{{route('devops.customer')}}">客户管理</a></li>
+                <li class="layui-nav-item {{\Request::is('task') ? 'layui-this' :''}}"><a
+                            href="{{route('devops.task')}}">任务管理</a></li>
+                <li class="layui-nav-item {{\Request::is('version') ? 'layui-this' :''}}"><a
+                            href="{{route('devops.version')}}">发布管理</a></li>
+                <li class="layui-nav-item {{\Request::is('motto') ? 'layui-this' :''}}"><a
+                            href="{{route('devops.motto')}}">每日一图</a></li>
             </ul>
         </div>
     </div>
