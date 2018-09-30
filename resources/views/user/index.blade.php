@@ -169,7 +169,7 @@
               width: 80,
               align: 'center',
               title: '头像',
-              templet: '<div><img lay-src="@{{d.avatar}}" style="width: 32px; height: 32px; border-radius: 16px;"></div>'
+              templet: '<div><img lay-src="@{{d.avatar}}"  class="lay-img" style="width: 28px; height: 28px; border-radius: 14px;"></div>'
             }
             , {field: 'alias', minWidth: 100, title: '昵称'}
             , {field: 'team_alias', minWidth: 120, title: '团队'}
@@ -181,7 +181,10 @@
             , {fixed: 'right', title: '操作', align: 'center', toolbar: '#operation', width: 120}
           ]]
           , done: function () {
-            flow.lazyimg();
+            flow.lazyimg({
+              elem: "img.lay-img",
+              scrollElem: ".layui-body"
+            });
           }
         });
         table.on('tool(user)', function (obj) {
