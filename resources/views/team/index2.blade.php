@@ -117,10 +117,10 @@
           ]]
         });
         table.on('tool(team)', function (obj) {
-          var data = obj.data;
+          var me = obj.data;
           if (obj.event === 'del') {
             layer.confirm('老铁，真的要永别吗？', function (index) {
-              axios.delete('/api/team/' + data.id).then(function () {
+              axios.delete('/api/team/' + me.id).then(function () {
                 layer.msg('👍👍👍干的漂亮')
                 obj.del();
               }).then(function () {
@@ -128,6 +128,11 @@
               })
             });
           } else if (obj.event === 'edit') {
+            form.val("devops-team", {
+              "name": me.name,
+              "alias": me.alias,
+              "note": me.note
+            })
             layer.open({
               type: 1, //引入DOM模式
               title: '编辑团队',
@@ -140,7 +145,7 @@
               yes: function (index, layero) { // 第一个回掉
                 //监听保存
                 form.on('submit(devops-team-submit)', function (data) {
-                  axios.put('/api/team/' + data.id, data.field).then(function () {
+                  axios.put('/api/team/' + me.id, data.field).then(function () {
                     layer.msg('👍👍👍干的漂亮')
                   }).then(function () {
                     table.reload('team');
