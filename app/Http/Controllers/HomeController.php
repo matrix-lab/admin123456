@@ -22,7 +22,8 @@ class HomeController extends Controller
     {
         $teams = Team::orderBy('id', 'ASC')->get();
 
-        return view('team.index', ['teams' => $teams]);
+        //return view('team.index', [ 'teams' => $teams ]);
+        return view('team.index2', ['teams' => $teams]);
     }
 
     public function user()
@@ -71,5 +72,10 @@ class HomeController extends Controller
         $mottos = Motto::where('status', 0)->get();
 
         return view('motto.index', ['mottos' => $mottos]);
+    }
+
+    public function me()
+    {
+        return view('me');
     }
 }

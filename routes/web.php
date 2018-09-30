@@ -21,6 +21,11 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/me', [
+    'uses' => 'HomeController@me',
+    'as'   => 'devops.me',
+]);
+
 Route::get('/team', [
     'uses' => 'HomeController@team',
     'as'   => 'devops.team',
