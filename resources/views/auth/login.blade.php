@@ -441,7 +441,7 @@
 <script>
   $(document).ready(function () {
     var state = false;
-    $('#go').on('submit', function (e) {
+    $('#accesspanel').on('submit', function (e) {
       e.preventDefault();
       if ($("#email").val() !== '' && $("#password").val() !== '') {
         state = true;
@@ -452,7 +452,10 @@
         document.getElementById("litheader").className = "poweron";
         document.getElementById("go").className = "";
         document.getElementById("go").value = "登录中...";
-        $("#accesspanel").submit();
+        setTimeout(function () {
+          e.currentTarget.submit();
+        }, 500)
+
       } else {
         document.getElementById("litheader").className = "";
         document.getElementById("go").className = "denied";
