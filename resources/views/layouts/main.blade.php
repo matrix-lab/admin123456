@@ -39,7 +39,7 @@
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree">
                 <li class="layui-nav-item  {{\Request::is('/') ? 'layui-this' :''}}"><a
-                            href="/">控制台</a></li>
+                            href="/">控制中心</a></li>
                 <li class="layui-nav-item  {{\Request::is('team') ? 'layui-this' :''}}"><a
                             href="{{route('devops.team')}}">团队管理</a></li>
                 <li class="layui-nav-item {{\Request::is('user') ? 'layui-this' :''}}"><a
