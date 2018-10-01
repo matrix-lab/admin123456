@@ -145,6 +145,11 @@
         table.render({
           elem: '#customer'
           , url: '/api/customer/'
+          , page: true
+          , limit: 50
+          , height: 'full-175'
+          , title: '客户清单'
+          , toolbar: true
           , cellMinWidth: 80
           , cols: [[
             {field: 'name', width: 160, align: 'center', title: '公司名称'}

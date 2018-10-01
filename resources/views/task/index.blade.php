@@ -220,6 +220,11 @@
         table.render({
           elem: '#task'
           , url: '/api/task/'
+          , page: true
+          , limit: 50
+          , height: 'full-175'
+          , title: '任务清单'
+          , toolbar: true
           , cellMinWidth: 80
           , cols: [[
             {field: 'team_alias', width: 100, align: 'center', title: '团队'}

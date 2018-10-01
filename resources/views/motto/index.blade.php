@@ -85,6 +85,11 @@
           elem: '#motto'
           , url: '/api/motto/'
           , cellMinWidth: 60
+          , page: true
+          , limit: 50
+          , height: 'full-175'
+          , title: '每日一图清单'
+          , toolbar: true
           , cols: [[
             {field: 'user_alias', width: 160, align: 'center', title: '发布人'}
             , {field: 'star', width: 60, align: 'center', title: '星星'}

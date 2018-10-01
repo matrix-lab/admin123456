@@ -107,6 +107,11 @@
         table.render({
           elem: '#team'
           , url: '/api/team/'
+          , page: true
+          , limit: 50
+          , height: 'full-175'
+          , title: '团队清单'
+          , toolbar: true
           , cellMinWidth: 50
           , cols: [[
             // {type: 'checkbox', fixed: 'left'},

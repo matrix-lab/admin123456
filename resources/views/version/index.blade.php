@@ -145,6 +145,11 @@
         table.render({
           elem: '#version'
           , url: '/api/version/'
+          , page: true
+          , limit: 50
+          , height: 'full-175'
+          , title: '发布清单'
+          , toolbar: true
           , cellMinWidth: 80
           , cols: [[
             {field: 'issue', width: 180, align: 'center', title: '问题'}

@@ -9,7 +9,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">Super DevOps</div>
+        <div class="layui-logo">Running DevOps</div>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
@@ -50,12 +50,12 @@
         </div>
     </div>
     <div class="layui-body">
-        <div style="padding: 15px;">
+        <div style="margin: 15px;">
             @yield('content')
         </div>
     </div>
     <div class="layui-footer">
-        © DevOps - Admin123456
+        © Running DevOps - Admin123456
     </div>
 </div>
 <script src="/js/layui.all.js"></script>

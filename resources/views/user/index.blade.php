@@ -161,6 +161,11 @@
         table.render({
           elem: '#user'
           , url: '/api/user/'
+          , page: true
+          , limit: 50
+          , height: 'full-175'
+          , title: '人员清单'
+          , toolbar: true
           , cellMinWidth: 80
           , cols: [[
             {field: 'name', width: 80, align: 'center', title: '姓名'}
