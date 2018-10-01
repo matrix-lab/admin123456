@@ -188,7 +188,7 @@
           , done: function () {
             flow.lazyimg({
               elem: "img.lay-img",
-              scrollElem: ".layui-body"
+              scrollElem: ".layui-table-box"
             });
           }
         });
