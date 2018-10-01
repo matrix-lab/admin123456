@@ -10,15 +10,21 @@
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">Running DevOps</div>
-        <ul class="layui-nav layui-layout-right">
+        <ul class="layui-nav layui-layout-right ">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="{{avatar(Auth::user()->email)}}" class="layui-nav-img"> {{ Auth::user()->name }}
+                    <img src="{{avatar(Auth::user()->email)}}" class="layui-nav-img"> {{ Auth::user()->alias }}
                 </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">我的任务</a></dd>
-                    <dd><a href="">安全设置</a></dd>
-                </dl>
+                {{--<dl class="layui-nav-child">--}}
+                {{--<dd><a href="">我的任务</a></dd>--}}
+                {{--<dd><a href="">安全设置</a></dd>--}}
+                {{--</dl>--}}
+            </li>
+            <li class="layui-nav-item">
+                <a href="">我的任务<span class="layui-badge">9</span></a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
             </li>
             <li class="layui-nav-item">
                 <a href="{{ route('logout') }}"
@@ -33,7 +39,7 @@
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree">
                 <li class="layui-nav-item  {{\Request::is('/') ? 'layui-this' :''}}"><a
-                            href="/">工作台</a></li>
+                            href="/">控制台</a></li>
                 <li class="layui-nav-item  {{\Request::is('team') ? 'layui-this' :''}}"><a
                             href="{{route('devops.team')}}">团队管理</a></li>
                 <li class="layui-nav-item {{\Request::is('user') ? 'layui-this' :''}}"><a

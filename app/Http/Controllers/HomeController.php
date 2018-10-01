@@ -14,8 +14,9 @@ class HomeController extends Controller
     public function index()
     {
         $mottos = Motto::where('status', 0)->limit(5)->orderBy('id', 'desc')->get();
+        $tasks  = Task::where('team_id', 1)->limit(5)->orderBy('id', 'desc')->get();
 
-        return view('welcome', ['mottos' => $mottos]);
+        return view('home', ['mottos' => $mottos, 'tasks' => $tasks]);
     }
 
     public function team()

@@ -9,7 +9,7 @@
             </span>
         </div>
         <div class="layui-col-xs1" style="text-align: right;">
-            <button class="layui-btn layui-btn-sm layui-btn-normal" data-method="offset" data-type="t">
+            <button class="layui-btn layui-btn-sm layui-btn-normal layui-anim layui-anim-scale" data-method="offset" data-type="t">
                 <i class="layui-icon">&#xe608;</i> 添加
             </button>
         </div>
@@ -44,8 +44,6 @@
         @{{#  } else { }}
         <a class="layui-btn layui-btn-disabled layui-btn-xs" lay-event="none">已投稿</a>
         @{{#  } }}
-
-
     </script>
     <script>
       layui.use(['table', 'laydate', 'flow'], function () {
@@ -67,7 +65,7 @@
             yes: function (index, layero) {
               form.on('submit(devops-motto-submit)', function (data) {
                 axios.post('/api/motto', data.field).then(function () {
-                  layer.msg('👍👍👍干的漂亮')
+                  layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
                 }).then(function () {
                   table.reload('motto');
                   layer.close(index)
@@ -105,7 +103,7 @@
           if (obj.event === 'del') {
             layer.confirm('老铁，真的要永别吗？', function (index) {
               axios.delete('/api/motto/' + me.id).then(function () {
-                layer.msg('👍👍👍干的漂亮')
+                layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
                 obj.del();
               }).then(function () {
                 layer.close(index);
@@ -128,7 +126,7 @@
                 form.on('submit(devops-motto-submit)', function (data) {
                   data.field.team_alias = $("#team_id option:selected").text()
                   axios.put('/api/motto/' + me.id, data.field).then(function () {
-                    layer.msg('👍👍👍干的漂亮')
+                    layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
                   }).then(function () {
                     table.reload('motto');
                     layer.close(index)
@@ -143,7 +141,7 @@
           } else if (obj.event === 'push') {
             layer.confirm('老铁，这样搞你会上头条的？', function (index) {
               axios.put('/api/motto/' + me.id + '/push').then(function () {
-                layer.msg('👍👍👍干的漂亮')
+                layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
               }).then(function () {
                 table.reload('motto');
                 layer.close(index);

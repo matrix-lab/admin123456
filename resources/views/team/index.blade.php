@@ -9,7 +9,8 @@
             </span>
         </div>
         <div class="layui-col-xs1" style="text-align: right;">
-            <button class="layui-btn layui-btn-sm layui-btn-normal" data-method="offset" data-type="t">
+            <button class="layui-btn layui-btn-sm layui-btn-normal layui-anim layui-anim-scale" data-method="offset"
+                    data-type="t">
                 <i class="layui-icon">&#xe608;</i> 添加
             </button>
         </div>
@@ -79,7 +80,7 @@
             type: 1, //引入DOM模式
             title: '创建团队',
             shade: false, // 移除遮罩
-            anim: 6, //动画效果
+            anim: 1, //动画效果
             area: '480px',
             content: $('#team_html'),
             moveType: 1,//支持拖动
@@ -88,7 +89,7 @@
               //监听保存
               form.on('submit(devops-team-submit)', function (data) {
                 axios.post('/api/team', data.field).then(function () {
-                  layer.msg('👍👍👍干的漂亮')
+                  layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
                 }).then(function () {
                   table.reload('team');
                   layer.close(index)
@@ -129,7 +130,7 @@
           if (obj.event === 'del') {
             layer.confirm('老铁，真的要永别吗？', function (index) {
               axios.delete('/api/team/' + me.id).then(function () {
-                layer.msg('👍👍👍干的漂亮')
+                layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
                 obj.del();
               }).then(function () {
                 layer.close(index);
@@ -145,7 +146,7 @@
               type: 1, //引入DOM模式
               title: '编辑团队',
               shade: false, // 移除遮罩
-              anim: 6, //动画效果
+              anim: 1, //动画效果
               area: '480px',
               content: $('#team_html'),
               moveType: 1,//支持拖动
@@ -154,7 +155,7 @@
                 //监听保存
                 form.on('submit(devops-team-submit)', function (data) {
                   axios.put('/api/team/' + me.id, data.field).then(function () {
-                    layer.msg('👍👍👍干的漂亮')
+                    layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
                   }).then(function () {
                     table.reload('team');
                     layer.close(index)
@@ -167,17 +168,6 @@
                 layer.close(index)
               }
             });
-
-
-            // layer.prompt({
-            //   formType: 2
-            //   , value: data.id
-            // }, function (value, index) {
-            //   obj.update({
-            //     id: value
-            //   });
-            //   layer.close(index);
-            // });
           }
         });
       });

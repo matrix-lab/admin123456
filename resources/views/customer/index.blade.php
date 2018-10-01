@@ -9,7 +9,7 @@
             </span>
         </div>
         <div class="layui-col-xs1" style="text-align: right;">
-            <button class="layui-btn layui-btn-sm layui-btn-normal" data-method="offset" data-type="t">
+            <button class="layui-btn layui-btn-sm layui-btn-normal layui-anim layui-anim-scale" data-method="offset" data-type="t">
                 <i class="layui-icon">&#xe608;</i> 添加
             </button>
         </div>
@@ -102,7 +102,6 @@
     <script>
       layui.use(['table', 'laydate', 'flow'], function () {
         var $ = layui.jquery, table = layui.table, form = layui.form, laydate = layui.laydate, flow = layui.flow;
-
         laydate.render({
           elem: '#birthday'
         });
@@ -120,7 +119,7 @@
             type: 1,
             title: '创建客户',
             shade: false,
-            anim: 6,
+            anim: 3,
             area: '480px',
             content: $('#customer_html'),
             moveType: 1,
@@ -128,7 +127,7 @@
             yes: function (index, layero) {
               form.on('submit(devops-customer-submit)', function (data) {
                 axios.post('/api/customer', data.field).then(function () {
-                  layer.msg('👍👍👍干的漂亮')
+                  layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
                 }).then(function () {
                   table.reload('customer');
                   layer.close(index)
@@ -171,7 +170,7 @@
           if (obj.event === 'del') {
             layer.confirm('老铁，真的要永别吗？', function (index) {
               axios.delete('/api/customer/' + me.id).then(function () {
-                layer.msg('👍👍👍干的漂亮')
+                layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
                 obj.del();
               }).then(function () {
                 layer.close(index);
@@ -190,7 +189,7 @@
               type: 1,
               title: '编辑客户',
               shade: false,
-              anim: 6,
+              anim: 3,
               area: '480px',
               content: $('#customer_html'),
               moveType: 1,
@@ -199,7 +198,7 @@
                 form.on('submit(devops-customer-submit)', function (data) {
                   data.field.team_alias = $("#team_id option:selected").text()
                   axios.put('/api/customer/' + me.id, data.field).then(function () {
-                    layer.msg('👍👍👍干的漂亮')
+                    layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
                   }).then(function () {
                     table.reload('customer');
                     layer.close(index)
