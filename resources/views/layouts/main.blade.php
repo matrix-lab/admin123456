@@ -23,9 +23,9 @@
             <li class="layui-nav-item">
                 <a href="">我的任务<span class="layui-badge">9</span></a>
             </li>
-            <li class="layui-nav-item">
-                <a href="">个人中心<span class="layui-badge-dot"></span></a>
-            </li>
+            {{--<li class="layui-nav-item">--}}
+                {{--<a href="">个人中心<span class="layui-badge-dot"></span></a>--}}
+            {{--</li>--}}
             <li class="layui-nav-item">
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出</a>
@@ -38,20 +38,20 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree">
-                <li class="layui-nav-item  {{\Request::is('/') ? 'layui-this' :''}}"><a
-                            href="/">控制中心</a></li>
-                <li class="layui-nav-item  {{\Request::is('team') ? 'layui-this' :''}}"><a
-                            href="{{route('devops.team')}}">团队管理</a></li>
-                <li class="layui-nav-item {{\Request::is('user') ? 'layui-this' :''}}"><a
-                            href="{{route('devops.user')}}">人员管理</a></li>
-                <li class="layui-nav-item {{\Request::is('customer') ? 'layui-this' :''}}"><a
-                            href="{{route('devops.customer')}}">客户管理</a></li>
-                <li class="layui-nav-item {{\Request::is('task') ? 'layui-this' :''}}"><a
-                            href="{{route('devops.task')}}">任务管理</a></li>
-                <li class="layui-nav-item {{\Request::is('version') ? 'layui-this' :''}}"><a
-                            href="{{route('devops.version')}}">发布管理</a></li>
-                <li class="layui-nav-item {{\Request::is('motto') ? 'layui-this' :''}}"><a
-                            href="{{route('devops.motto')}}">每日一图</a></li>
+                <li class="layui-nav-item  {{\Request::is('/') ? 'layui-this' :''}}">
+                    <a href="/"><i class="layui-icon layui-icon-console"></i> 控制中心</a></li>
+                <li class="layui-nav-item  {{\Request::is('team') ? 'layui-this' :''}}">
+                    <a href="{{route('devops.team')}}"><i class="layui-icon layui-icon-group"></i> 团队管理</a></li>
+                <li class="layui-nav-item {{\Request::is('user') ? 'layui-this' :''}}">
+                    <a href="{{route('devops.user')}}"><i class="layui-icon layui-icon-user"></i> 人员管理</a></li>
+                <li class="layui-nav-item {{\Request::is('customer') ? 'layui-this' :''}}">
+                    <a href="{{route('devops.customer')}}"><i class="layui-icon layui-icon-face-smile-fine"></i> 客户管理</a></li>
+                <li class="layui-nav-item {{\Request::is('task') ? 'layui-this' :''}}">
+                    <a href="{{route('devops.task')}}"><i class="layui-icon layui-icon-tabs"></i> 任务管理</a></li>
+                <li class="layui-nav-item {{\Request::is('version') ? 'layui-this' :''}}">
+                    <a href="{{route('devops.version')}}"><i class="layui-icon layui-icon-fonts-code"></i> 发布管理</a></li>
+                <li class="layui-nav-item {{\Request::is('motto') ? 'layui-this' :''}}">
+                    <a href="{{route('devops.motto')}}"><i class="layui-icon layui-icon-picture"></i> 每日一图</a></li>
             </ul>
         </div>
     </div>
