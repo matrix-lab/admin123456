@@ -49,6 +49,7 @@
     <script>
       layui.use(['table', 'laydate', 'flow'], function () {
         var $ = layui.jquery, table = layui.table, form = layui.form;
+        var loading = layer.load(3, {offset: ['50%', '50%']});
         // 添加
         $('.layui-btn-normal').on('click', function () {
           form.val("devops-motto", {
@@ -92,12 +93,22 @@
           , cols: [[
             {field: 'user_alias', width: 160, align: 'center', title: '发布人'}
             , {field: 'star', width: 60, align: 'center', title: '星星'}
-            , {field: 'content', minWidth: 200, align: 'center', title: '内容', edit: 'text'}
+            , {
+              field: 'content',
+              minWidth: 200,
+              align: 'center',
+              title: '内容',
+              edit: 'text',
+              style: 'background-color: #f0f9f7; color: #333;'
+            }
             , {field: 'created_at', width: 180, align: 'center', title: '创建时间'}
             , {field: 'updated_at', width: 180, align: 'center', title: '更新时间'}
             , {field: 'status', width: 80, align: 'center', title: '状态'}
             , {fixed: 'right', title: '操作', align: 'center', toolbar: '#operation', width: 160}
-          ]]
+          ]],
+          done: function () {
+            layer.close(loading);
+          }
         });
         table.on('tool(motto)', function (obj) {
           var me = obj.data;

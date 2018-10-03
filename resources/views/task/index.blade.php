@@ -282,7 +282,14 @@
             , {field: 'product', width: 80, align: 'center', title: '产品'}
             , {field: 'come_from', width: 100, align: 'center', title: '来源'}
             , {field: 'category', width: 80, align: 'center', title: '模块'}
-            , {field: 'content', maxWidth: 200, align: 'center', title: '任务', edit: 'text'}
+            , {
+              field: 'content',
+              maxWidth: 200,
+              align: 'center',
+              title: '任务',
+              edit: 'text',
+              style: 'background-color: #f0f9f7; color: #333;'
+            }
             , {field: 'ioser_alias', width: 80, align: 'center', title: 'IOS'}
             , {field: 'androider_alias', width: 80, align: 'center', title: 'Android'}
             , {field: 'uier_alias', width: 80, align: 'center', title: 'UI'}
