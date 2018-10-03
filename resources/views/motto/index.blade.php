@@ -9,7 +9,8 @@
             </span>
         </div>
         <div class="layui-col-xs1" style="text-align: right;">
-            <button class="layui-btn layui-btn-sm layui-btn-normal layui-anim layui-anim-scale" data-method="offset" data-type="t">
+            <button class="layui-btn layui-btn-sm layui-btn-normal layui-anim layui-anim-scale" data-method="offset"
+                    data-type="t">
                 <i class="layui-icon">&#xe608;</i> 添加
             </button>
         </div>
@@ -91,7 +92,7 @@
           , cols: [[
             {field: 'user_alias', width: 160, align: 'center', title: '发布人'}
             , {field: 'star', width: 60, align: 'center', title: '星星'}
-            , {field: 'content', minWidth: 200, align: 'center', title: '内容'}
+            , {field: 'content', minWidth: 200, align: 'center', title: '内容', edit: 'text'}
             , {field: 'created_at', width: 180, align: 'center', title: '创建时间'}
             , {field: 'updated_at', width: 180, align: 'center', title: '更新时间'}
             , {field: 'status', width: 80, align: 'center', title: '状态'}
@@ -148,6 +149,12 @@
               })
             });
           }
+        });
+        table.on('edit(motto)', function (obj) {
+          var value = obj.value, data = obj.data;
+          axios.put('/api/motto/' + data.id, {'content': value}).then(function (result) {
+            layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
+          })
         });
       });
     </script>
