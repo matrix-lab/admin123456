@@ -107,6 +107,7 @@
         // 表格数据
         table.render({
           elem: '#team'
+          , even: true
           , url: '/api/team/'
           , page: true
           , limit: 50

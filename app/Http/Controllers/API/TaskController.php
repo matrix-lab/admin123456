@@ -12,11 +12,25 @@ class TaskController extends Controller
 {
     public function index()
     {
+        $params = [];
+
+        if (request()->get('come_from')) {
+            $params['come_from'] = request()->get('come_from');
+        }
+
+        if (request()->get('published_at')) {
+            $params['published_at'] = request()->get('published_at');
+        }
+
+        if (request()->get('status')) {
+            $params['status'] = request()->get('status');
+        }
+
         return [
             'code'  => 0,
             'msg'   => '',
-            'count' => Task::count('id'),
-            'data'  => Task::orderBy('id', 'DESC')->get(),
+            'count' => Task::where($params)->count('id'),
+            'data'  => Task::where($params)->orderBy('id', 'DESC')->get(),
         ];
 
         //$tasks = Task::all();

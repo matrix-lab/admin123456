@@ -9,11 +9,54 @@
             </span>
         </div>
         <div class="layui-col-xs1" style="text-align: right;">
-            <button class="layui-btn layui-btn-sm layui-btn-normal layui-anim layui-anim-scale" data-method="offset" data-type="t">
+            <button class="layui-btn layui-btn-sm layui-btn-normal layui-anim layui-anim-scale" data-method="offset"
+                    data-type="t">
                 <i class="layui-icon">&#xe608;</i> 添加
             </button>
         </div>
     </div>
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <form class="layui-form layui-form-pane">
+                <div class="layui-inline">
+                    <label class="layui-form-label">来源</label>
+                    <div class="layui-input-inline">
+                        <select name="search_come_from" id="search_come_from" lay-search class="layui-select">
+                            <option value="">全部</option>
+                            @foreach(\App\Models\Customer::all() as $customer)
+                                <option value="{{$customer->name}}">{{$customer->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">上线时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text"
+                               id="search_published_at"
+                               name="search_published_at"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-inline">
+                        <select name="search_status" id="search_status" class="layui-select">
+                            <option value="">全部</option>
+                            <option value="未完成">未完成</option>
+                            <option value="已完成">已完成</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn" type="button" id="search">搜索</button>
+                    <button class="layui-btn layui-btn-danger" type="reset" id="reset">重置</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
     <table class="layui-hide" id="task" lay-filter="task"></table>
     <div id="task_html" style="display: none;">
         <form class="layui-form" lay-filter="devops-task" id="devops-task" style="margin-top: 15px;">
@@ -155,6 +198,10 @@
     </div>
 @endsection
 @section('scripts')
+    <script type="text/html" id="statusTpl">
+        <input type="checkbox" name="status" value="@{{d.id}}" lay-skin="switch" lay-text="已完成|未完成"
+               lay-filter="statusOpn" @{{ d.status== '已完成' ? 'checked' : '' }} data="@{{d}}">
+    </script>
     <script type="text/html" id="operation">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
@@ -167,6 +214,10 @@
     <script>
       layui.use(['table', 'laydate', 'flow'], function () {
         var $ = layui.jquery, table = layui.table, form = layui.form, laydate = layui.laydate;
+
+        laydate.render({
+          elem: '#search_published_at'
+        });
         laydate.render({
           elem: '#published_at',
         });
@@ -219,19 +270,19 @@
         // 表格数据
         table.render({
           elem: '#task'
+          , toolbar: true
           , url: '/api/task/'
           , page: true
           , limit: 50
-          , height: 'full-175'
+          , height: 'full-215'
           , title: '任务清单'
-          , toolbar: true
           , cellMinWidth: 80
           , cols: [[
             {field: 'team_alias', width: 100, align: 'center', title: '团队'}
             , {field: 'product', width: 80, align: 'center', title: '产品'}
             , {field: 'come_from', width: 100, align: 'center', title: '来源'}
             , {field: 'category', width: 80, align: 'center', title: '模块'}
-            , {field: 'content', maxWidth: 200, align: 'center', title: '任务'}
+            , {field: 'content', maxWidth: 200, align: 'center', title: '任务', edit: 'text'}
             , {field: 'ioser_alias', width: 80, align: 'center', title: 'IOS'}
             , {field: 'androider_alias', width: 80, align: 'center', title: 'Android'}
             , {field: 'uier_alias', width: 80, align: 'center', title: 'UI'}
@@ -239,7 +290,7 @@
             , {field: 'tester_alias', width: 80, align: 'center', title: 'TEST'}
             , {field: 'published_at', width: 105, title: '上线时间', align: 'center'}
             , {field: 'progress', width: 75, title: '进度'}
-            , {field: 'status', width: 75, title: '状态'}
+            , {field: 'status', width: 110, title: '状态', align: 'center', templet: '#statusTpl'}
             , {field: 'note', maxWidth: 160, title: '备注'}
             , {fixed: 'right', title: '操作', align: 'center', toolbar: '#operation', width: 115}
           ]]
@@ -295,6 +346,49 @@
             });
           }
         });
+        table.on('edit(task)', function (obj) {
+          var value = obj.value, data = obj.data;
+          axios.put('/api/task/' + data.id, {'content': value}).then(function (result) {
+            layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
+          })
+        });
+        form.on('switch(statusOpn)', function (obj) {
+          var params = {};
+          if (obj.elem.checked) {
+            params.status = '已完成'
+          } else {
+            params.status = '未完成'
+          }
+          axios.put('/api/task/' + this.value, params).then(function (result) {
+            layer.msg('老铁，干的漂亮！👍', {icon: 6, offset: 'rt', anim: 2});
+          })
+        });
+
+        $("#search").on('click', function () {
+          table.reload('task', {
+            page: {
+              curr: 1
+            }
+            , where: {
+              come_from: $("#search_come_from").val(),
+              published_at: $("#search_published_at").val(),
+              status: $("#search_status").val()
+            }
+          });
+        })
+
+        $("#reset").on('click', function () {
+          table.reload('task', {
+            page: {
+              curr: 1
+            }
+            , where: {
+              come_from: "",
+              published_at: "",
+              status: ""
+            }
+          });
+        })
       });
     </script>
 @endsection
