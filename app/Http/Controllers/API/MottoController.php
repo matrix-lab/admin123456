@@ -13,8 +13,6 @@ class MottoController extends Controller
 {
     public function index()
     {
-        sleep(2);
-
         return [
             'code'  => 0,
             'msg'   => '',
