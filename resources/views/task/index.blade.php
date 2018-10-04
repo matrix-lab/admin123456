@@ -214,7 +214,7 @@
     <script>
       layui.use(['table', 'laydate', 'flow'], function () {
         var $ = layui.jquery, table = layui.table, form = layui.form, laydate = layui.laydate;
-
+        var loading = layer.load(3, {offset: ['50%', '50%']});
         laydate.render({
           elem: '#search_published_at'
         });
@@ -301,6 +301,9 @@
             , {field: 'note', maxWidth: 160, title: '备注'}
             , {fixed: 'right', title: '操作', align: 'center', toolbar: '#operation', width: 115}
           ]]
+          , done: function () {
+            layer.close(loading);
+          }
         });
         table.on('tool(task)', function (obj) {
           var me = obj.data;
