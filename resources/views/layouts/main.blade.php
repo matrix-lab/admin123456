@@ -9,7 +9,10 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">Running DevOps</div>
+        <div class="layui-logo">
+            <img src="/images/logo.png"
+                 class="layui-nav-img"> Running DevOps
+        </div>
         <ul class="layui-nav layui-layout-right ">
             <li class="layui-nav-item">
                 <a href="javascript:;">
@@ -24,7 +27,7 @@
                 <a href="">我的任务<span class="layui-badge">9</span></a>
             </li>
             {{--<li class="layui-nav-item">--}}
-                {{--<a href="">个人中心<span class="layui-badge-dot"></span></a>--}}
+            {{--<a href="">个人中心<span class="layui-badge-dot"></span></a>--}}
             {{--</li>--}}
             <li class="layui-nav-item">
                 <a href="{{ route('logout') }}"
@@ -45,7 +48,8 @@
                 <li class="layui-nav-item {{\Request::is('user') ? 'layui-this' :''}}">
                     <a href="{{route('devops.user')}}"><i class="layui-icon layui-icon-user"></i> 人员管理</a></li>
                 <li class="layui-nav-item {{\Request::is('customer') ? 'layui-this' :''}}">
-                    <a href="{{route('devops.customer')}}"><i class="layui-icon layui-icon-face-smile-fine"></i> 客户管理</a></li>
+                    <a href="{{route('devops.customer')}}"><i class="layui-icon layui-icon-face-smile-fine"></i>
+                        客户管理</a></li>
                 <li class="layui-nav-item {{\Request::is('task') ? 'layui-this' :''}}">
                     <a href="{{route('devops.task')}}"><i class="layui-icon layui-icon-tabs"></i> 任务管理</a></li>
                 <li class="layui-nav-item {{\Request::is('version') ? 'layui-this' :''}}">
