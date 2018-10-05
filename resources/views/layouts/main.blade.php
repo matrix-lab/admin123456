@@ -11,7 +11,7 @@
     <div class="layui-header">
         <div class="layui-logo">
             <img src="/images/logo.png"
-                 class="layui-nav-img"> Running DevOps
+                 class="layui-nav-img layui-anim layui-anim-rotate"> Running DevOps
         </div>
         <ul class="layui-nav layui-layout-right ">
             <li class="layui-nav-item">

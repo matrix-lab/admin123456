@@ -1,8 +1,64 @@
 @extends('layouts.main')
 @section('title', 'Super DevOps HomePage')
 @section('content')
+    <div class="layui-row layui-col-space15" style="color: #fff;">
+        <div class="layui-col-md2 layui-col-xs2 layui-anim layui-anim-scale"
+             style="text-align: center;background: #009688; border: 8px solid #fff;">
+            <h3 style="height: 50px;line-height: 50px;">
+                团队总数
+            </h3>
+            <h2 style="height: 30px;line-height: 30px;">
+                {{\App\Models\Team::count()}}
+            </h2>
+        </div>
+        <div class="layui-col-md2 layui-col-xs2 layui-anim layui-anim-scale"
+             style="text-align: center;background: #5FB878;border: 8px solid #fff;">
+            <h3 style="height: 50px;line-height: 50px;">
+                人员总数
+            </h3>
+            <h2 style="height: 30px;line-height: 30px;">
+                {{\App\User::count()}}
+            </h2>
+        </div>
+        <div class="layui-col-md2 layui-col-xs2 layui-anim layui-anim-scale"
+             style="text-align: center;background: #1E9FFF;border: 8px solid #fff;">
+            <h3 style="height: 50px;line-height: 50px;">
+                客户总数
+            </h3>
+            <h2 style="height: 30px;line-height: 30px;">
+                {{\App\Models\Customer::count()}}
+            </h2>
+        </div>
+        <div class="layui-col-md2 layui-col-xs2 layui-anim layui-anim-scale"
+             style="text-align: center;background: #FFB800;border: 8px solid #fff;">
+            <h3 style="height: 50px;line-height: 50px;">
+                任务总数
+            </h3>
+            <h2 style="height: 30px;line-height: 30px;">
+                {{\App\Models\Task::count()}}
+            </h2>
+        </div>
+        <div class="layui-col-md2 layui-col-xs2 layui-anim layui-anim-scale"
+             style="text-align: center;background: #FF5722;border: 8px solid #fff;">
+            <h3 style="height: 50px;line-height: 50px;">
+                发布次数
+            </h3>
+            <h2 style="height: 30px;line-height: 30px;">
+                {{\App\Models\Version::count()}}
+            </h2>
+        </div>
+        <div class="layui-col-md2 layui-col-xs2 layui-anim layui-anim-scale"
+             style="text-align: center;background: #2F4056;border: 8px solid #fff;">
+            <h3 style="height: 50px;line-height: 50px;">
+                每日一图
+            </h3>
+            <h2 style="height: 30px;line-height: 30px;">
+                {{\App\Models\Motto::count()}}
+            </h2>
+        </div>
+    </div>
     <div class="layui-row layui-col-space15">
-        <div class="layui-col-xs layui-col-sm8 layui-col-md8">
+        <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
             <div class="layui-card" style="background: #eee;">
                 <div class="layui-card-header">
                     <h3>最新任务</h3>
@@ -26,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3">
             <div class="layui-card" style="background: #eee;">
                 <div class="layui-card-header">
                     <h3>每日一图</h3>
@@ -35,7 +91,7 @@
                     <ul class="layui-timeline">
                         @foreach($mottos as $motto)
                             <li class="layui-timeline-item">
-                                <img src="{{avatar($motto->user_email)}}" alt="user" width="50"
+                                <img src="{{avatar($motto->user_email)}}" alt="user" width="64"
                                      class="rounded-circle layui-timeline-axis">
                                 <div class="layui-timeline-content layui-text">
                                     <h4 class="layui-timeline-title"
