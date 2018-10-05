@@ -32,82 +32,81 @@ class TaskController extends Controller
             'count' => Task::where($params)->count('id'),
             'data'  => Task::where($params)->orderBy('id', 'DESC')->get(),
         ];
-
-        //$tasks = Task::all();
-        //
-        //$data = [
-        //    [
-        //        '团队',
-        //        '产品',
-        //        '来源',
-        //        '模块',
-        //        '任务',
-        //        'IOS负责人',
-        //        'IOS开始时间',
-        //        'IOS结束时间',
-        //        'Android负责人',
-        //        'Android开始时间',
-        //        'Android结束时间',
-        //        '前端负责人',
-        //        '前端开始时间',
-        //        '前端结束时间',
-        //        '后端负责人',
-        //        '后端开始时间',
-        //        '后端结束时间',
-        //        '测试负责人',
-        //        '测试开始时间',
-        //        '测试结束时间',
-        //        '进度',
-        //        '状态',
-        //        '上线时间',
-        //        '备注',
-        //    ],
-        //];
-        //
-        //foreach ($tasks as $task) {
-        //    array_push($data, [
-        //        $task->team_alias,
-        //        $task->product,
-        //        $task->come_from,
-        //        $task->category,
-        //        $task->content,
-        //        $task->ioser_alias,
-        //        $task->ioser_start_at,
-        //        $task->ioser_end_at,
-        //        $task->androider_alias,
-        //        $task->androider_start_at,
-        //        $task->androider_end_at,
-        //        $task->uier_alias,
-        //        $task->uier_start_at,
-        //        $task->uier_end_at,
-        //        $task->phper_alias,
-        //        $task->phper_start_at,
-        //        $task->phper_end_at,
-        //        $task->tester_alias,
-        //        $task->tester_start_at,
-        //        $task->tester_end_at,
-        //        $task->progress,
-        //        $task->status,
-        //        $task->published_at,
-        //        $task->note,
-        //    ]);
-        //}
-        //
-        //$fileName = '北京研发中心'.Carbon::now()->toDateString().'开发计划.csv';
-        //
-        //$fp = fopen($fileName, 'w');
-        //ob_start();
-        //foreach ($data as $fields) {
-        //    fputcsv($fp, $fields);
-        //}
-        //fclose($fp);
-        //ob_get_clean();
-        //
-        //return response()->download($fileName, $fileName)->deleteFileAfterSend(true);
     }
 
     public function download()
     {
+        $tasks = Task::all();
+
+        $data = [
+            [
+                '团队',
+                '产品',
+                '来源',
+                '模块',
+                '任务',
+                'IOS',
+                'IOS开始时间',
+                'IOS结束时间',
+                'Android',
+                'Android开始时间',
+                'Android结束时间',
+                'UI',
+                '前端开始时间',
+                '前端结束时间',
+                'PHP',
+                'PHP开始时间',
+                'PHP结束时间',
+                'TEST',
+                '测试开始时间',
+                '测试结束时间',
+                '进度',
+                '状态',
+                '上线时间',
+                '备注',
+            ],
+        ];
+
+        foreach ($tasks as $task) {
+            array_push($data, [
+                $task->team_alias,
+                $task->product,
+                $task->come_from,
+                $task->category,
+                $task->content,
+                $task->ioser_alias,
+                $task->ioser_start_at,
+                $task->ioser_end_at,
+                $task->androider_alias,
+                $task->androider_start_at,
+                $task->androider_end_at,
+                $task->uier_alias,
+                $task->uier_start_at,
+                $task->uier_end_at,
+                $task->phper_alias,
+                $task->phper_start_at,
+                $task->phper_end_at,
+                $task->tester_alias,
+                $task->tester_start_at,
+                $task->tester_end_at,
+                $task->progress,
+                $task->status,
+                $task->published_at,
+                $task->note,
+            ]);
+        }
+
+        $fileName = '北京研发中心 '.Carbon::now()->toDateString().'开发计划.csv';
+
+        $fp = fopen($fileName, 'w');
+        ob_start();
+        foreach ($data as $fields) {
+            fputcsv($fp, $fields);
+        }
+        fclose($fp);
+        ob_get_clean();
+
+        return response()->download($fileName, $fileName)->deleteFileAfterSend(true);
     }
 
     public function store(Request $request)

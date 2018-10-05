@@ -2,13 +2,16 @@
 @section('title', 'Super DevOps HomePage')
 @section('content')
     <div class="layui-row">
-        <div class="layui-col-xs11">
+        <div class="layui-col-xs10">
            <span class="layui-breadcrumb">
               <a href="/">首页</a>
               <a><cite>任务管理</cite></a>
             </span>
         </div>
-        <div class="layui-col-xs1" style="text-align: right;">
+        <div class="layui-col-xs2" style="text-align: right;">
+            <button class="layui-btn layui-btn-sm" id="download">
+                <i class="layui-icon layui-icon-download-circle"></i> 下载
+            </button>
             <button class="layui-btn layui-btn-sm layui-btn-normal layui-anim layui-anim-scale" data-method="offset"
                     data-type="t">
                 <i class="layui-icon">&#xe608;</i> 添加
@@ -200,7 +203,7 @@
 @section('scripts')
     <script type="text/html" id="statusTpl">
         <input type="checkbox" name="status" value="@{{d.id}}" lay-skin="switch" lay-text="已完成|未完成"
-               lay-filter="statusOpn" @{{ d.status== '已完成' ? 'checked' : '' }} data="@{{d}}">
+               lay-filter="statusOpn" @{{ d.status=== '已完成' ? 'checked' : '' }} data="@{{d}}">
     </script>
     <script type="text/html" id="operation">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -271,6 +274,7 @@
         table.render({
           elem: '#task'
           , toolbar: true
+          , defaultToolbar: ['filter']
           , url: '/api/task/'
           , page: true
           , limit: 50
@@ -398,6 +402,10 @@
               status: ""
             }
           });
+        })
+
+        $("#download").on('click', function () {
+          window.location.href = '/api/task/download'
         })
       });
     </script>

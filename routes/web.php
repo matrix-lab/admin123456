@@ -71,6 +71,7 @@ Route::prefix('api')->namespace('API')->group(function () {
     Route::post('/task', 'TaskController@store');
     Route::put('/task/{task}', 'TaskController@update');
     Route::delete('/task/{task}', 'TaskController@destroy');
+    Route::get('/task/download', 'TaskController@download');
 
     Route::get('/version', 'VersionController@index');
     Route::post('/version', 'VersionController@store');
