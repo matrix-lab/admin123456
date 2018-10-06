@@ -16,8 +16,21 @@ class Motto extends Model
         'status',
     ];
 
+    protected $appends = [
+        'status2',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getStatus2Attribute()
+    {
+        if ($this->status) {
+            return '已投稿';
+        } else {
+            return '未投稿';
+        }
     }
 }

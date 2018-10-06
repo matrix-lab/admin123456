@@ -103,7 +103,7 @@
             }
             , {field: 'created_at', width: 180, align: 'center', title: '创建时间'}
             , {field: 'updated_at', width: 180, align: 'center', title: '更新时间'}
-            , {field: 'status', width: 80, align: 'center', title: '状态'}
+            , {field: 'status2', width: 80, align: 'center', title: '状态'}
             , {fixed: 'right', title: '操作', align: 'center', toolbar: '#operation', width: 160}
           ]],
           done: function () {

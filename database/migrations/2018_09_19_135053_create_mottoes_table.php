@@ -18,7 +18,7 @@ class CreateMottoesTable extends Migration
             $table->string('user_alias')->comment('用户别名');
             $table->integer('star')->default(1)->comment('点赞数量');
             $table->text('content')->comment('推荐内容');
-            $table->boolean('status')->default(0)->comment('点赞数量');
+            $table->boolean('status')->default(0)->comment('1是已推送0是未推送');
             $table->timestamps();
         });
     }
