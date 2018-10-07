@@ -93,10 +93,10 @@
       ));
   };
   websocket.onmessage = function (event) {
-    if (JSON.parse(event.data).data !== undefined) {
-      var info = JSON.parse(JSON.parse(event.data).data);
-      layer.msg('老铁们，' + info.name + ' 来了 👏👏', {icon: 6, offset: 'rt', anim: 2});
-    }
+    // if (JSON.parse(event.data).data !== undefined) {
+    //   var info = JSON.parse(JSON.parse(event.data).data);
+    //   layer.msg('老铁们，' + info.name + ' 来了 👏👏', {icon: 6, offset: 'rt', anim: 2});
+    // }
     online.innerText = JSON.parse(event.data).count;
   };
 
