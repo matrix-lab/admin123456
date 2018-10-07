@@ -65,11 +65,49 @@
         </div>
     </div>
     <div class="layui-footer">
-        © Running DevOps - Admin123456
+        <div class="layui-row">
+            <div class="layui-col-md10">
+                © Running DevOps - {{Carbon\Carbon::now()->year}}
+            </div>
+            <div class="layui-col-md2">
+                <div style="text-align: right;">
+                    当前在线:<span id="online" style="color: red;">1</span>人
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script src="/js/layui.all.js"></script>
 <script src="/assets/libs/axios/axios.min.js"></script>
+<script>
+  var online = document.getElementById('online');
+  var websocket = new WebSocket("ws://127.0.0.1:8090");
+  websocket.onopen = function (event) {
+    console.log("欢迎您，{{Auth::user()->name}} to DevOps Club.");
+    websocket.send(
+      JSON.stringify(
+        {
+          id: "{{Auth::user()->id}}",
+          name: "{{Auth::user()->name}}"
+        }
+      ));
+  };
+  websocket.onmessage = function (event) {
+    if (JSON.parse(event.data).data !== undefined) {
+      var info = JSON.parse(JSON.parse(event.data).data);
+      layer.msg('老铁们，' + info.name + ' 来了 👏👏', {icon: 6, offset: 'rt', anim: 2});
+    }
+    online.innerText = JSON.parse(event.data).count;
+  };
+
+  websocket.onclose = function (event) {
+    online.innerText = event.data;
+  };
+
+  websocket.onerror = function (event, e) {
+    console.error("老铁，您的服务异常了.");
+  };
+</script>
 @yield('scripts')
 </body>
 </html>
