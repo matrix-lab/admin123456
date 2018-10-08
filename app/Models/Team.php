@@ -11,4 +11,9 @@ class Team extends Model
         'alias',
         'note',
     ];
+
+    public function getTaskCount()
+    {
+        return Task::where('status', '未完成')->where('team_id', $this->id)->count();
+    }
 }

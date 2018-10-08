@@ -10,11 +10,17 @@ class TeamController extends Controller
 {
     public function index()
     {
+        $teams = Team::orderBy('id', 'DESC')->get()->map(function ($team) {
+            $team->offsetSet('task_count', $team->getTaskCount());
+
+            return $team;
+        });
+
         return [
             'code'  => 0,
             'msg'   => '',
             'count' => Team::count('id'),
-            'data'  => Team::orderBy('id', 'DESC')->get(),
+            'data'  => $teams,
         ];
     }
 

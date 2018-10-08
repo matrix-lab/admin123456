@@ -121,6 +121,7 @@
             , {field: 'name', width: 100, align: 'center', title: '团队名称'}
             , {field: 'alias', width: 150, align: 'center', title: '团队别名'}
             , {field: 'note', minWidth: 120, title: '团队宣言'}
+            , {field: 'task_count', width: 90, align: 'center', title: '任务数量', sort: true}
             , {field: 'created_at', width: 170, align: 'center', title: '创建时间', sort: true}
             , {field: 'updated_at', width: 170, align: 'center', title: '更新时间', sort: true}
             , {fixed: 'right', title: '操作', align: 'center', toolbar: '#operation', width: 120}

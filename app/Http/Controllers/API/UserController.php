@@ -11,11 +11,17 @@ class UserController extends Controller
 {
     public function index()
     {
+        $users = User::where('id', '>', 1)->orderBy('id', 'asc')->get()->map(function ($user) {
+            $user->offsetSet('task_count', $user->getTaskCount());
+
+            return $user;
+        });
+
         return [
             'code'  => 0,
             'msg'   => '',
             'count' => User::where('id', '>', 1)->count(),
-            'data'  => User::where('id', '>', 1)->orderBy('id', 'asc')->get(),
+            'data'  => $users,
         ];
     }
 
