@@ -47,14 +47,12 @@ class User extends Authenticatable
 
     public function getTaskCount()
     {
-        $query           = Task::where('status', '未完成');
-        $user_id         = $this->id;
-        $uier_count      = $query->where('uier_id', $user_id)->count();
-        $phper_count     = $query->where('phper_id', $user_id)->count();
-        $ioser_count     = $query->where('ioser_id', $user_id)->count();
-        $androider_count = $query->where('androider_id', $user_id)->count();
-        $tester_count    = $query->where('tester_id', $user_id)->count();
-        $devopser_count  = $query->where('devopser_id', $user_id)->count();
+        $uier_count      = Task::where('status', '未完成')->where('uier_id', $this->id)->count();
+        $phper_count     = Task::where('status', '未完成')->where('phper_id', $this->id)->count();
+        $ioser_count     = Task::where('status', '未完成')->where('ioser_id', $this->id)->count();
+        $androider_count = Task::where('status', '未完成')->where('androider_id', $this->id)->count();
+        $tester_count    = Task::where('status', '未完成')->where('tester_id', $this->id)->count();
+        $devopser_count  = Task::where('status', '未完成')->where('devopser_id', $this->id)->count();
 
         return $uier_count + $phper_count + $ioser_count + $androider_count + $tester_count + $devopser_count;
     }
