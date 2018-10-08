@@ -5,7 +5,6 @@ namespace App;
 use App\Models\Task;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -49,7 +48,7 @@ class User extends Authenticatable
     public function getTaskCount()
     {
         $query           = Task::where('status', '未完成');
-        $user_id         = Auth::user()->id;
+        $user_id         = $this->id;
         $uier_count      = $query->where('uier_id', $user_id)->count();
         $phper_count     = $query->where('phper_id', $user_id)->count();
         $ioser_count     = $query->where('ioser_id', $user_id)->count();
