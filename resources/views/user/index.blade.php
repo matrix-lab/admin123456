@@ -169,7 +169,8 @@
           , toolbar: true
           , cellMinWidth: 80
           , cols: [[
-            {field: 'name', width: 80, align: 'center', title: '姓名'}
+            {field: 'id', width: 50, align: 'center', title: 'ID'}
+            , {field: 'name', width: 80, align: 'center', title: '姓名'}
             , {
               field: 'avatar',
               width: 80,
