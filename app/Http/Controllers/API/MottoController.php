@@ -33,9 +33,9 @@ class MottoController extends Controller
 
     public function update(Request $request, Motto $motto)
     {
-        $user = Auth::user();
-        $request->offsetSet('user_alias', $user->alias);
-        $request->offsetSet('user_email', $user->email);
+        //$user = Auth::user();
+        //$request->offsetSet('user_alias', $user->alias);
+        //$request->offsetSet('user_email', $user->email);
 
         $motto->update($request->all());
 

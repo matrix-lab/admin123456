@@ -140,8 +140,8 @@ class TaskController extends Controller
     {
         $type = $request->get('type');
 
-        $request->offsetSet($type.'er_id', Auth::user()->id);
-        $request->offsetSet($type.'er_alias', Auth::user()->name);
+        //$request->offsetSet($type.'er_id', Auth::user()->id);
+        //$request->offsetSet($type.'er_alias', Auth::user()->name);
         $request->offsetSet($type.'er_start_at', $request->get('started_at'));
         $request->offsetSet($type.'er_end_at', $request->get('ended_at'));
 
