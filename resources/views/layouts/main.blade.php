@@ -81,7 +81,7 @@
 <script src="/assets/libs/axios/axios.min.js"></script>
 <script>
   var online = document.getElementById('online');
-  var websocket = new WebSocket("ws://127.0.0.1:8090");
+  var websocket = new WebSocket("ws://0.0.0.0:8090");
   websocket.onopen = function (event) {
     console.log("欢迎您，{{Auth::user()->name}} to DevOps Club.");
     websocket.send(
