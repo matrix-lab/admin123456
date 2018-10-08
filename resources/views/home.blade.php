@@ -61,14 +61,14 @@
         <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
             <div class="layui-card" style="background: #eee;">
                 <div class="layui-card-header">
-                    <h3>最新任务</h3>
+                    <h3>最新任务 <span style="color: red;font-weight: bolder;">【🙏求带走🙏】</span></h3>
                 </div>
                 <div class="layui-card-body">
                     <dl class="layuiadmin-card-status">
                         @foreach($tasks as $task)
                             <dd style="display: flex;padding: 15px;">
                                 <div style="width: 48px;">
-                                    <img src="{{avatar(Auth::user()->email)}}"
+                                    <img src="/images/logo.png"
                                          style="width:48px; border-radius: 24px;">
                                 </div>
                                 <div style="margin-left: 8px;">

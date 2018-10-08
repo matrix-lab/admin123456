@@ -24,7 +24,7 @@
                 {{--</dl>--}}
             </li>
             <li class="layui-nav-item">
-                <a href="">我的任务<span class="layui-badge">9</span></a>
+                <a href="">我的任务<span class="layui-badge">{{Auth::user()->getTaskCount()}}</span></a>
             </li>
             {{--<li class="layui-nav-item">--}}
             {{--<a href="">个人中心<span class="layui-badge-dot"></span></a>--}}
