@@ -182,7 +182,7 @@
             , {field: 'email', minWidth: 120, title: '邮箱'}
             , {field: 'mobile', minWidth: 120, title: '手机'}
             , {field: 'birthday', minWidth: 120, title: '生日'}
-            , {field: 'task_count', width: 90, align: 'center', title: '任务数量', sort: true}
+            , {field: 'task_count', width: 100, align: 'center', title: '任务数量', sort: true}
             , {field: 'created_at', width: 170, align: 'center', title: '创建时间', sort: true}
             // , {field: 'updated_at', width: 170, align: 'center', title: '更新时间', sort: true}
             , {fixed: 'right', title: '操作', align: 'center', toolbar: '#operation', width: 120}
