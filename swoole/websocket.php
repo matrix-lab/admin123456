@@ -6,6 +6,7 @@ $table->column('from_id', swoole_table::TYPE_INT);
 $table->create();
 
 $server        = new swoole_websocket_server('0.0.0.0', 8090);
+
 $server->table = $table;
 
 $server->on('open', function (swoole_websocket_server $_server, $request) {
