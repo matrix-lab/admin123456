@@ -18,17 +18,10 @@
                 <a href="javascript:;">
                     <img src="{{avatar(Auth::user()->email)}}" class="layui-nav-img"> {{ Auth::user()->alias }}
                 </a>
-                {{--<dl class="layui-nav-child">--}}
-                {{--<dd><a href="">我的任务</a></dd>--}}
-                {{--<dd><a href="">安全设置</a></dd>--}}
-                {{--</dl>--}}
             </li>
             <li class="layui-nav-item">
                 <a href="">我的任务<span class="layui-badge">{{Auth::user()->getTaskCount()}}</span></a>
             </li>
-            {{--<li class="layui-nav-item">--}}
-            {{--<a href="">个人中心<span class="layui-badge-dot"></span></a>--}}
-            {{--</li>--}}
             <li class="layui-nav-item">
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出</a>

@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use App\Models\Motto;
 use App\Models\Task;
 use App\Models\Team;
-use App\Models\Version;
-use App\User;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $mottos = Motto::where('status', 0)->limit(5)->orderBy('id', 'desc')->get();
-        $tasks  = Task::where('team_id', 1)->limit(5)->orderBy('id', 'desc')->get();
+        $mottos = Motto::where('status', 0)->limit(6)->orderBy('id', 'desc')->get();
+        $tasks  = Task::where('team_id', 1)->limit(8)->orderBy('id', 'desc')->get();
 
         return view('home', ['mottos' => $mottos, 'tasks' => $tasks]);
     }
