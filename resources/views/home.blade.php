@@ -35,7 +35,7 @@
                 任务总数
             </h3>
             <h2 style="height: 30px;line-height: 30px;">
-                {{\App\Models\Task::count()}}
+                {{\App\Models\Task::where('status','未完成')->count()}}
             </h2>
         </div>
         <div class="layui-col-md2 layui-col-xs2 layui-anim layui-anim-scale"
