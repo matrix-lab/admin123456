@@ -278,9 +278,9 @@
           , cellMinWidth: 80
           , cols: [[
             {field: 'team_alias', width: 100, align: 'center', title: '团队', sort: true}
-            , {field: 'product', width: 80, align: 'center', title: '产品'}
+            , {field: 'product', width: 200, align: 'center', title: '产品'}
             , {field: 'come_from', width: 100, align: 'center', title: '来源'}
-            , {field: 'category', width: 80, align: 'center', title: '模块'}
+            , {field: 'category', width: 150, align: 'center', title: '模块'}
             , {
               field: 'content',
               minWidth: 500,
