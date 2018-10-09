@@ -62,8 +62,8 @@
 
     <table class="layui-hide" id="task" lay-filter="task"></table>
     <div id="task_html" style="display: none;">
-        <form class="layui-form" lay-filter="devops-task" id="devops-task" style="margin-top: 15px;">
-            <div class="layui-row">
+        <form class="layui-form" lay-filter="devops-task" id="devops-task">
+            <div class="layui-row" style="margin-top: 15px;">
                 <div class="layui-col-xs5">
                     <div class="layui-form-item">
                         <label class="layui-form-label">团队</label>
@@ -186,7 +186,7 @@
                 <div class="layui-col-xs10">
                     <div class="layui-form-item">
                         <label class="layui-form-label">备注</label>
-                        <div class="layui-input-block">
+                        <div class="layui-input-block" style="height: 60px;">
                             <textarea name="note" placeholder="备注" class="layui-textarea"></textarea>
                         </div>
                     </div>

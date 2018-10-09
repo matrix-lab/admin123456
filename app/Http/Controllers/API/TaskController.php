@@ -38,7 +38,7 @@ class TaskController extends Controller
 
     public function download()
     {
-        $tasks = Task::all();
+        $tasks = Task::where('status', '未完成')->get();
 
         $data = [
             [
