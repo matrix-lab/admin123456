@@ -14,6 +14,10 @@ class TaskController extends Controller
     {
         $params = [];
 
+        if (request()->get('id')) {
+            $params['id'] = request()->get('id');
+        }
+
         if (request()->get('come_from')) {
             $params['come_from'] = request()->get('come_from');
         }

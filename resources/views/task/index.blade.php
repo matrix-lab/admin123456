@@ -22,6 +22,15 @@
         <div class="layui-col-xs12">
             <form class="layui-form layui-form-pane">
                 <div class="layui-inline">
+                    <label class="layui-form-label">ID</label>
+                    <div class="layui-input-inline">
+                        <input type="text"
+                               id="search_id"
+                               name="search_id"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
                     <label class="layui-form-label">来源</label>
                     <div class="layui-input-inline">
                         <select name="search_come_from" id="search_come_from" lay-search class="layui-select">
@@ -387,6 +396,7 @@
               curr: 1
             }
             , where: {
+              id: $("#search_id").val(),
               come_from: $("#search_come_from").val(),
               published_at: $("#search_published_at").val(),
               status: $("#search_status").val()
@@ -400,6 +410,7 @@
               curr: 1
             }
             , where: {
+              id: "",
               come_from: "",
               published_at: "",
               status: ""
