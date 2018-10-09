@@ -208,11 +208,6 @@
     <script type="text/html" id="operation">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-        @{{#  if(d.progress == '待审批'){ }}
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="apply">审批</a>
-        @{{#  } else if(d.progress == '待发布') { }}
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="publish">发布</a>
-        @{{#  } }}
     </script>
     <script>
       layui.use(['table', 'laydate', 'flow'], function () {
@@ -282,7 +277,7 @@
           , title: '任务清单'
           , cellMinWidth: 80
           , cols: [[
-            {field: 'team_alias', width: 100, align: 'center', title: '团队'}
+            {field: 'team_alias', width: 100, align: 'center', title: '团队', sort: true}
             , {field: 'product', width: 80, align: 'center', title: '产品'}
             , {field: 'come_from', width: 100, align: 'center', title: '来源'}
             , {field: 'category', width: 80, align: 'center', title: '模块'}
@@ -299,7 +294,7 @@
             , {field: 'uier_alias', width: 80, align: 'center', title: 'UI'}
             , {field: 'phper_alias', width: 80, align: 'center', title: 'PHP'}
             , {field: 'tester_alias', width: 80, align: 'center', title: 'TEST'}
-            , {field: 'published_at', width: 105, title: '上线时间', align: 'center'}
+            , {field: 'published_at', width: 105, title: '上线时间', align: 'center', sort: true}
             , {field: 'progress', width: 75, title: '进度'}
             , {field: 'status', width: 110, title: '状态', align: 'center', templet: '#statusTpl'}
             , {field: 'note', maxWidth: 160, title: '备注'}

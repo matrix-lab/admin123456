@@ -93,7 +93,7 @@
     <script type="text/html" id="operation">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-        @{{#  if(d.progress == '待审批'){ }}
+        @{{#  if(d.progress == '待审核'){ }}
         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="apply">审批</a>
         @{{#  } else if(d.progress == '待发布') { }}
         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="publish">发布</a>
