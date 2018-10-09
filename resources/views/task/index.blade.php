@@ -277,7 +277,8 @@
           , title: '任务清单'
           , cellMinWidth: 80
           , cols: [[
-            {field: 'team_alias', width: 100, align: 'center', title: '团队', sort: true}
+            {field: 'id', width: 50, align: 'center', title: 'ID', sort: true}
+            , {field: 'team_alias', width: 100, align: 'center', title: '团队', sort: true}
             , {field: 'product', width: 150, align: 'center', title: '产品'}
             , {field: 'come_from', width: 100, align: 'center', title: '来源'}
             , {field: 'category', width: 150, align: 'center', title: '模块'}
