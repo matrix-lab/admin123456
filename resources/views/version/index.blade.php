@@ -152,9 +152,9 @@
           , toolbar: true
           , cellMinWidth: 80
           , cols: [[
-            {field: 'issue', width: 180, align: 'center', title: '问题'}
-            , {field: 'branch', minWidth: 100, align: 'center', title: '分支'}
-            , {field: 'customer_alias', minWidth: 120, align: 'center', title: '目标客户'}
+            {field: 'issue', minWidth: 180, align: 'center', title: '问题'}
+            , {field: 'branch', minWidth: 80, align: 'center', title: '分支'}
+            , {field: 'customer_alias', minWidth: 80, align: 'center', title: '目标客户'}
             , {field: 'appointed_at', width: 165, align: 'center', title: '预约时间'}
             , {field: 'applyer_alias', width: 80, align: 'center', title: '申请人'}
             , {field: 'approver_alias', width: 80, align: 'center', title: '审批人'}
