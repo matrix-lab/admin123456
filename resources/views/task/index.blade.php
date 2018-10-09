@@ -45,8 +45,8 @@
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-inline">
                         <select name="search_status" id="search_status" class="layui-select">
-                            <option value="">全部</option>
-                            <option value="未完成">未完成</option>
+                            <option value="全部">全部</option>
+                            <option value="未完成" selected>未完成</option>
                             <option value="已完成">已完成</option>
                         </select>
                     </div>

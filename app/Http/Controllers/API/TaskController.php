@@ -22,8 +22,10 @@ class TaskController extends Controller
             $params['published_at'] = request()->get('published_at');
         }
 
-        if (request()->get('status')) {
-            $params['status'] = request()->get('status');
+        if (request()->get('status', '未完成')) {
+            if (request()->get('status', '未完成') != '全部') {
+                $params['status'] = request()->get('status', '未完成');
+            }
         }
 
         return [
