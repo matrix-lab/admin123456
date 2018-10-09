@@ -168,6 +168,10 @@
           , title: '人员清单'
           , toolbar: true
           , cellMinWidth: 80
+          , initSort: {
+            field: 'task_count'
+            , type: 'asc'
+          }
           , cols: [[
             {field: 'id', width: 50, align: 'center', title: 'ID'}
             , {field: 'name', width: 80, align: 'center', title: '姓名'}

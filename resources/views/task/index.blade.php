@@ -285,6 +285,10 @@
           , height: 'full-215'
           , title: '任务清单'
           , cellMinWidth: 80
+          , initSort: {
+            field: 'task_count'
+            , type: 'asc'
+          }
           , cols: [[
             {fixed: 'left', field: 'id', width: 50, align: 'center', title: 'ID', sort: true}
             , {field: 'team_alias', width: 100, align: 'center', title: '团队', sort: true}
