@@ -295,7 +295,14 @@
             , {field: 'uier_alias', width: 80, align: 'center', title: 'UI'}
             , {field: 'phper_alias', width: 80, align: 'center', title: 'PHP'}
             , {field: 'tester_alias', width: 80, align: 'center', title: 'TEST'}
-            , {field: 'published_at', width: 105, title: '上线时间', align: 'center', sort: true}
+            , {
+              field: 'published_at',
+              width: 105,
+              title: '上线时间',
+              align: 'center',
+              sort: true,
+              style: 'background-color: #88fecf; color: #333; font-weight:weight;'
+            }
             , {field: 'progress', width: 75, title: '进度'}
             , {field: 'status', width: 110, title: '状态', align: 'center', templet: '#statusTpl'}
             , {field: 'note', minWidth: 250, title: '备注'}
