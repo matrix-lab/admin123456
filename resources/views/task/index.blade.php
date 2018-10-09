@@ -283,7 +283,7 @@
             , {field: 'category', width: 80, align: 'center', title: '模块'}
             , {
               field: 'content',
-              minWidth: 400,
+              minWidth: 500,
               align: 'center',
               title: '任务',
               edit: 'text',
