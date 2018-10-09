@@ -283,7 +283,7 @@
             , {field: 'category', width: 80, align: 'center', title: '模块'}
             , {
               field: 'content',
-              minWidth: 300,
+              minWidth: 400,
               align: 'center',
               title: '任务',
               edit: 'text',
@@ -297,7 +297,7 @@
             , {field: 'published_at', width: 105, title: '上线时间', align: 'center', sort: true}
             , {field: 'progress', width: 75, title: '进度'}
             , {field: 'status', width: 110, title: '状态', align: 'center', templet: '#statusTpl'}
-            , {field: 'note', maxWidth: 160, title: '备注'}
+            , {field: 'note', minWidth: 250, title: '备注'}
             , {fixed: 'right', title: '操作', align: 'center', toolbar: '#operation', width: 115}
           ]]
           , done: function () {
