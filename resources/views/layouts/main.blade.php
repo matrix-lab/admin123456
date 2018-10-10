@@ -19,9 +19,9 @@
                     <img src="{{avatar(Auth::user()->email)}}" class="layui-nav-img"> {{ Auth::user()->alias }}
                 </a>
             </li>
-            <li class="layui-nav-item">
-                <a href="">我的任务<span class="layui-badge">{{Auth::user()->getTaskCount()}}</span></a>
-            </li>
+            {{--<li class="layui-nav-item">--}}
+                {{--<a href="">我的任务<span class="layui-badge">{{Auth::user()->getTaskCount()}}</span></a>--}}
+            {{--</li>--}}
             <li class="layui-nav-item">
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出</a>
