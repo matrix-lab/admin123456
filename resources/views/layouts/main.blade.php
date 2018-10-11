@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Super DevOps Task Tracking</title>
     <link rel="stylesheet" href="/css/layui.css">
+    <link rel="stylesheet" href="/css/lay.css">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -70,7 +71,7 @@
         </div>
     </div>
 </div>
-<script src="/js/layui.all.js"></script>
+<script src="/js/layui.js"></script>
 <script src="/assets/libs/axios/axios.min.js"></script>
 <script>
   var online = document.getElementById('online');

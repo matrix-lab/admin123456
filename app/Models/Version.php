@@ -28,6 +28,10 @@ class Version extends Model
         'note',
     ];
 
+    protected $casts = [
+        'customer_alias'                 => 'array',
+    ];
+
     public function applyer()
     {
         return $this->belongsTo(User::class, 'applyer_id');

@@ -46,12 +46,21 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">目标客户</label>
                         <div class="layui-input-block">
-                            <input type="text"
-                                   name="customer_alias"
-                                   required
-                                   lay-verify="required"
-                                   placeholder="客户用逗号分割"
-                                   autocomplete="off" class="layui-input">
+                            {{--<input type="text"--}}
+                                   {{--name="customer_alias"--}}
+                                   {{--required--}}
+                                   {{--lay-verify="required"--}}
+                                   {{--placeholder="客户用逗号分割"--}}
+                                   {{--autocomplete="off" class="layui-input">--}}
+                            <select name="customer_alias" multiple
+                            required
+                            lay-verify="required"
+                            autocomplete="off" class="layui-input">
+                                <option value="">目标客户</option>
+                                @foreach(\App\Models\Customer::all() as $customer)
+                                    <option value="{{$customer->name}}">{{$customer->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -100,7 +109,7 @@
         @{{#  } }}
     </script>
     <script>
-      layui.use(['table', 'laydate', 'flow'], function () {
+      layui.use(['table', 'laydate', 'flow','form'], function () {
         var $ = layui.jquery, table = layui.table, form = layui.form, laydate = layui.laydate;
         laydate.render({
           elem: '#appointed_at',
