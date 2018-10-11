@@ -12,19 +12,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $params = [];
-
-        if (request()->get('id')) {
-            $params['id'] = request()->get('id');
-        }
-
-        if (request()->get('come_from')) {
-            $params['come_from'] = request()->get('come_from');
-        }
-
-        if (request()->get('published_at')) {
-            $params['published_at'] = request()->get('published_at');
-        }
+        $params = request()->only(['id', 'come_from', 'published_at']);
 
         if (request()->get('status', '未完成')) {
             if (request()->get('status', '未完成') != '全部') {
