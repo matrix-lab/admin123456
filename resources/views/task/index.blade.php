@@ -141,7 +141,7 @@
                 </div>
                 <div class="layui-col-xs5">
                     <div class="layui-form-item">
-                        <label class="layui-form-label">上线时间</label>
+                        <label class="layui-form-label">完成时间</label>
                         <div class="layui-input-block">
                             <input type="text"
                                    id="published_at"
@@ -307,11 +307,11 @@
             , {field: 'androider_alias', width: 80, align: 'center', title: 'Android'}
             , {field: 'uier_alias', width: 80, align: 'center', title: 'UI'}
             , {field: 'phper_alias', width: 80, align: 'center', title: 'PHP'}
-            , {field: 'tester_alias', width: 80, align: 'center', title: 'TEST'}
+            // , {field: 'tester_alias', width: 80, align: 'center', title: 'TEST'}
             , {
               field: 'published_at',
               width: 105,
-              title: '上线时间',
+              title: '完成时间',
               align: 'center',
               sort: true,
               style: 'background-color: #88fecf; color: #333; font-weight:weight;'
