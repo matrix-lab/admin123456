@@ -56,7 +56,6 @@
                             required
                             lay-verify="required"
                             autocomplete="off" class="layui-input">
-                                <option value="">目标客户</option>
                                 @foreach(\App\Models\Customer::all() as $customer)
                                     <option value="{{$customer->name}}">{{$customer->name}}</option>
                                 @endforeach
